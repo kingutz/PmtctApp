@@ -1,0 +1,134 @@
+﻿@model Pmtct.Models.PmtctFollowUp
+
+@{
+    ViewData["Title"] = "Taarifa kwa kina";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1 class="text-info">Taarifa kwa Kina</h1>
+
+    <div>
+        @*<h4>PmtctFollowUp</h4>*@
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.ID">Rekebisha</a> |
+            <a asp-action="Index">Rudi kwenye Taarifa</a>
+        </div>
+        <hr />
+        <dl class="row">
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TareheHudhurio)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TareheHudhurio)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HaliYako305a)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HaliYako305a)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.KamaHapana305a)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.KamaHapana305a)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.KamaNdio305b)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.KamaNdio305b)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.MpangoMtu306b)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.MpangoMtu306b)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HaliMwenza307)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HaliMwenza307)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.KuhudumiwaTofautiVVU308a)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.NaniKutendea308b)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NaniKutendea308b)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.UmejiungaVVU309a)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.NdioTaja309b)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NdioTaja309b)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.MamaMwambata310a)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.MamaMwambata310a)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HudumaHulipatiwa310b)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HudumaHulipatiwa310b)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Rufaa)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Rufaa)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TareheHudhurioLijalo)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Ufuatiliaji)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Ufuatiliaji)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.JinaMtoHuduma)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.JinaMtoHuduma)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.NambaMshiriki01)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NambaMshiriki01)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        
+            <a asp-action="Edit" asp-route-id="@Model.ID">Rekebisha</a> |
+            <a asp-action="Index">Rudi kwenye Taarifa</a>
+        
+    </div>

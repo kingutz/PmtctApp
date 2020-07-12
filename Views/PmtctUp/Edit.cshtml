@@ -1,0 +1,117 @@
+﻿@model Pmtct.Models.PmtctFollowUp
+
+@{
+    ViewData["Title"] = "Rekebisha taarifa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-info">Rekebisha Taarifa</h1>
+
+@*<h4>PmtctFollowUp</h4>*@
+<a asp-action="Index">Rudi kwenye Taarifa</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+            <div class="form-group">
+                <label asp-for="TareheHudhurio" class="control-label"></label>
+                <input asp-for="TareheHudhurio" class="form-control" />
+                <span asp-validation-for="TareheHudhurio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaliYako305a" class="control-label"></label>
+                <input asp-for="HaliYako305a" class="form-control" />
+                <span asp-validation-for="HaliYako305a" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KamaHapana305a" class="control-label"></label>
+                <input asp-for="KamaHapana305a" class="form-control" />
+                <span asp-validation-for="KamaHapana305a" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KamaNdio305b" class="control-label"></label>
+                <input asp-for="KamaNdio305b" class="form-control" />
+                <span asp-validation-for="KamaNdio305b" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MpangoMtu306b" class="control-label"></label>
+                <input asp-for="MpangoMtu306b" class="form-control" />
+                <span asp-validation-for="MpangoMtu306b" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaliMwenza307" class="control-label"></label>
+                <input asp-for="HaliMwenza307" class="form-control" />
+                <span asp-validation-for="HaliMwenza307" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KuhudumiwaTofautiVVU308a" class="control-label"></label>
+                <input asp-for="KuhudumiwaTofautiVVU308a" class="form-control" />
+                <span asp-validation-for="KuhudumiwaTofautiVVU308a" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NaniKutendea308b" class="control-label"></label>
+                <input asp-for="NaniKutendea308b" class="form-control" />
+                <span asp-validation-for="NaniKutendea308b" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UmejiungaVVU309a" class="control-label"></label>
+                <input asp-for="UmejiungaVVU309a" class="form-control" />
+                <span asp-validation-for="UmejiungaVVU309a" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NdioTaja309b" class="control-label"></label>
+                <input asp-for="NdioTaja309b" class="form-control" />
+                <span asp-validation-for="NdioTaja309b" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MamaMwambata310a" class="control-label"></label>
+                <input asp-for="MamaMwambata310a" class="form-control" />
+                <span asp-validation-for="MamaMwambata310a" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HudumaHulipatiwa310b" class="control-label"></label>
+                <input asp-for="HudumaHulipatiwa310b" class="form-control" />
+                <span asp-validation-for="HudumaHulipatiwa310b" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rufaa" class="control-label"></label>
+                <input asp-for="Rufaa" class="form-control" />
+                <span asp-validation-for="Rufaa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TareheHudhurioLijalo" class="control-label"></label>
+                <input asp-for="TareheHudhurioLijalo" class="form-control" />
+                <span asp-validation-for="TareheHudhurioLijalo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ufuatiliaji" class="control-label"></label>
+                <input asp-for="Ufuatiliaji" class="form-control" />
+                <span asp-validation-for="Ufuatiliaji" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JinaMtoHuduma" class="control-label"></label>
+                <input asp-for="JinaMtoHuduma" class="form-control" />
+                <span asp-validation-for="JinaMtoHuduma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NambaMshiriki01" class="control-label"></label>
+                <input asp-for="NambaMshiriki01" class="form-control" />
+                <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tunza" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Rudi kwenye Taarifa</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

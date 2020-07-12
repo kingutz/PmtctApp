@@ -1,0 +1,146 @@
+﻿@model Pmtct.Models.PmtctCareCascade
+
+@{
+    ViewData["Title"] = "Ingiza Taarifa Mpya";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="text-info">Ingiza Taarifa Mpya</h1>
+
+@*<h4>PmtctFollowUp</h4>*@
+@*<a asp-action="Index">Rudi kwenye Taarifa</a>*@
+<div class="row">
+    <nav class="nav nav-pills">
+        <a class="nav-link" asp-action="Index">Rudi kwenye Taarifa</a>
+        <a class="nav-link " asp-action="Create" asp-controller="Pmtct">Weka Taarifa Kuu</a>
+        <a class="nav-link" asp-action="Create" asp-controller="PmtctUp">Weka Taarifa Upimaji</a>
+
+
+    </nav>
+    </div>
+    <hr />
+    <div class="row">
+        
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @Html.Hidden("UserId", (object)ViewBag.UserId)
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="row text-info">
+                <div class="col-md-8 " style="color:brown;background-color:antiquewhite;margin:10px">
+                    PMTCT CARE CASCADE
+                </div>
+
+                <div class="col-md-8" style="margin:10px;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="NambaMshiriki01" class="control-label"></label>
+                        </div>
+                        <div class="col-md-3">
+                            <select asp-for="NambaMshiriki01" class="form-control" asp-items="ViewBag.NambaMshiriki01">
+                                <option value="">--Namba Ya Mshiriki --</option>
+                            </select>
+                            <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <label asp-for="SN" class="control-label"></label>
+                        </div>
+                        <div class="col-md-3">
+                            <select asp-for="SN" class="form-control">
+                                <option value="">Serial Number</option>
+                                <option>401</option>
+                                <option>402</option>
+                                <option>403a</option>
+                                <option>403b</option>
+                                <option>403c</option>
+                                <option>404a</option>
+                            </select>
+                            <span asp-validation-for="SN" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-8" style="margin:10px;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="ServiceName" class="control-label"></label>
+                        </div>
+                        <div class="col-md-3">
+                            <select asp-for="ServiceName" class="form-control">
+                                <option value="">Huduma</option>
+                                <option>401.Initiated ART</option>
+                                <option>402.Delivery at the health facility</option>
+                                <option>403a.Early infant diagnosis at 2 months after birth</option>
+                                <option>403b.Infant HIV status</option>
+                                <option>403c.Mother/guardian received results</option>
+                                <option>404a. Infant HIV diagnosis 6 weeks after cessation of Breastfeeding leo</option>
+                            </select>
+                            <span asp-validation-for="ServiceName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3" style="margin-left:25px;">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="ResponseName" /> @Html.DisplayNameFor(model => model.ResponseName)
+                            </label>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="col-md-8" style="margin:10px;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="ServiceDate" class="control-label"></label>
+                        </div>
+                        <div class="col-md-3">
+                            <input asp-for="ServiceDate" class="form-control" />
+                            <span asp-validation-for="ServiceDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <label asp-for="RemarksName" class="control-label"></label>
+                        </div>
+                        <div class="col-md-3">
+
+                            <textarea asp-for="RemarksName" class="form-control"></textarea>
+                            <span asp-validation-for="RemarksName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <a asp-action="Index">Rudi kwenye Taarifa</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+        </div>
+   
+
+    
+        
+    
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

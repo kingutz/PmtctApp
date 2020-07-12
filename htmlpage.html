@@ -1,0 +1,78 @@
+﻿<!--@model Pmtct.Models.PmtctCareCascade
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>PmtctCareCascade</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NambaMshiriki01" class="control-label"></label>
+                <select asp-for="NambaMshiriki01" class="form-control" asp-items="ViewBag.NambaMshiriki01">
+                    <option value="">--Namba Ya Mshiriki --</option>
+                </select>
+                <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SN" class="control-label"></label>
+                <select asp-for="SN" class="form-control">
+                    <option value="">Serial Number</option>
+                    <option>401</option>
+                    <option>402</option>
+                    <option>403a</option>
+                    <option>403b</option>
+                    <option>403c</option>
+                    <option>404a</option>
+                </select>
+                <span asp-validation-for="SN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceName" class="control-label"></label>
+                <select asp-for="ServiceName" class="form-control">
+                    <option value="">Huduma</option>
+                    <option>401.Initiated ART</option>
+                    <option>402.Delivery at the health facility</option>
+                    <option>403a.Early infant diagnosis at 2 months after birth</option>
+                    <option>403b.Infant HIV status</option>
+                    <option>403c.Mother/guardian received results</option>
+                    <option>404a. Infant HIV diagnosis 6 weeks after cessation of Breastfeeding leo</option>
+                </select>
+                <span asp-validation-for="ServiceName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ResponseName" /> @Html.DisplayNameFor(model => model.ResponseName)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDate" class="control-label"></label>
+                <input asp-for="ServiceDate" class="form-control" />
+                <span asp-validation-for="ServiceDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemarksName" class="control-label"></label>
+                <textarea asp-for="RemarksName" class="form-control"></textarea>
+                <span asp-validation-for="RemarksName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}-->

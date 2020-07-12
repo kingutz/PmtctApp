@@ -1,0 +1,718 @@
+﻿@model Pmtct.Models.PmtctData
+
+
+
+@{
+    ViewData["Title"] = "Ingiza taarifa mpya";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="text-info">Ingiza Taarifa Mpya</h1>
+
+@*<h4>PmtctData</h4>*@
+@*<a asp-action="Index">Rudi kwenye Taarifa</a>*@
+<div class="row">
+    <nav class="nav nav-pills">
+        <a class="nav-link " asp-action="Index">Rudi kwenye Taarifa</a>
+        <a class="nav-link" asp-action="Create" asp-controller="PmtctUp">Weka Taarifa Upimaji</a>
+        <a class="nav-link" asp-action="Create" asp-controller="PmtctCare">Weka Taarifa Care</a>
+
+    </nav>
+</div>
+
+<hr />
+<div class="row">
+    <form asp-action="Create">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        
+            @Html.Hidden("UserId", (object)ViewBag.UserId)
+            <input type="hidden" asp-for="UserId" />
+        
+        <div class="row text-info">
+
+            <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+                TAARIFA ZA KITUO NA MAHOJIANO
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="NambaMshiriki01" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="TareheMahojiano03" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="JinaAnayehoji05" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="Wilaya02" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <input asp-for="NambaMshiriki01" class="form-control" id="phone" />
+                        <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <input asp-for="TareheMahojiano03" class="form-control" />
+                        <span asp-validation-for="TareheMahojiano03" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="JinaAnayehoji05" class="form-control" />
+                        <span asp-validation-for="JinaAnayehoji05" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="Wilaya02" class="form-control">
+                            <option value="">Wilaya</option>
+                            <option>1.Kaskazini A</option>
+                            <option>2.Kaskazini B</option>
+                            <option>3.Mjini</option>
+                            <option>4.Magharibi A</option>
+                            <option>5.Magharibi B</option>
+                            <option>6.Kati</option>
+                            <option>7.Kusini</option>
+                            <option>8.Mkoani</option>
+                            <option>9.Chake Chake</option>
+                            <option>10.Wete</option>
+                            <option>11.Micheweni</option>
+                        </select>
+                        <span asp-validation-for="Wilaya02" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="Ngazikituo06" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Kituo04" class="control-label"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <select asp-for="Kituo04" class="form-control">
+                            <option value="">Kituo </option>
+                            <option>Fuoni PHCU+</option>
+                            <option>Chukwani PHCU</option>
+                            <option>Kombeni PHCU</option>
+                            <option>Fuoni Kibondeni PHCU</option>
+                            <option>SOS PHCU</option>
+                            <option>Kiembe Samaki PHCU</option>
+                            <option>Magogoni PHCU</option>
+                            <option>Shakani PHCU</option>
+                            <option>Kendwa PHCU</option>
+                            <option>Gamba PHCU</option>
+                            <option>Pwani Mchangani PHCU</option>
+                            <option>Kivunge Hospital</option>
+                            <option>Fujoni PHCU</option>
+                            <option>Kitope RC PHCU</option>
+                            <option>Upenja PHCU</option>
+                            <option>Kiwengwa PHCU</option>
+                            <option>Bwejuu PHCU</option>
+                            <option>Kizimkazi Dimbani PHCU</option>
+                            <option>Kizimkazi Mkunguni PHCU</option>
+                            <option>Makunduchi Hospital</option>
+                            <option>Jambiani PHCU</option>
+                            <option>Mwembeladu PHCU</option>
+                            <option>Mnazi Mmoja Hospital</option>
+                            <option>Jang'ombe PHCU</option>
+                            <option>Seblen PHCU</option>
+                            <option>Mafunzo PHCU</option>
+                            <option>Kwamtipura PHCU</option>
+                            <option>Rahaleo PHCU</option>
+                            <option>Shaurimoyo PHCU</option>
+                            <option>Mpendae PHCU+</option>
+                            <option>SDA PHCU</option>
+                            <option>Ziwani polisi PHCU</option>
+                            <option>Welezo PHCU</option>
+                            <option>Bumbwi Sudi PHCU</option>
+                            <option>KMKM PHCU</option>
+                            <option>Bububu Hospital</option>
+                            <option>Chwaka PHCU</option>
+                            <option>Mwera PHCU+</option>
+                            <option>Dunga PHCU</option>
+                            <option>Ubago jeshini  Hospital</option>
+                            <option>Uroa PHCU</option>
+                            <option>Tunguu PHCU</option>
+                            <option>Chake Chake   Hospital</option>
+                            <option>Gombani PHCU</option>
+                            <option>Chonga PHCU</option>
+                            <option>Wesha PHCU</option>
+                            <option>Wete   PHCU</option>
+                            <option>Jadida PHCU</option>
+                            <option>Uondwe PHCU</option>
+                            <option>Kiuyu Kipangani PHCU</option>
+                            <option>Micheweni Hospital</option>
+                            <option>Mkoani Hospital</option>
+                            <option>Bogoa PHCU</option>
+                            <option>Nungwi PHCU+</option>
+                            <option>Kisauni PHCU</option>
+
+                        </select>
+                        <span asp-validation-for="Kituo04" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <select asp-for="Ngazikituo06" class="form-control">
+                            <option value="">Ngazi ya Kituo</option>
+                            <option>1.Referral Hospital</option>
+                            <option>2.Regional Hospital</option>
+                            <option>3.District Hospital</option>
+                            <option>4.PHCU+</option>
+                            <option>5.PHCU</option>
+
+                        </select>
+                        <span asp-validation-for="Ngazikituo06" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+                TAARIFA BINAFSI
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="Umri101" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="KiwangoElimu102" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="HaliNdoa103" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="KipatoMwezi104" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input asp-for="Umri101" class="form-control" />
+                        <span asp-validation-for="Umri101" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="KiwangoElimu102" class="form-control">
+                            <option value="">Kiwango cha Elimu</option>
+                            <option>1.Madrasa</option>
+                            <option>2.No formal Education</option>
+                            <option>3.Primary</option>
+                            <option>4.Incomplete Secondary</option>
+                            <option>5.Complete Secondary</option>
+                            <option>6. Higher education</option>
+                            <option>7. No education</option>
+                        </select>
+                        <span asp-validation-for="KiwangoElimu102" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="HaliNdoa103" class="form-control">
+                            <option value="">Hali ya Ndoa</option>
+                            <option>1.Married</option>
+                            <option>2.Cohabiting</option>
+                            <option>3.Single</option>
+                            <option>4.Divorced/Separated</option>
+                            <option>5.Widowed</option>
+                        </select>
+                        <span asp-validation-for="HaliNdoa103" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="KipatoMwezi104" class="form-control" />
+                        <span asp-validation-for="KipatoMwezi104" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="Kazi105" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="IdadiMimba106" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="WilayaUnayoishi107" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="NjeZanzibar108" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <select asp-for="Kazi105" class="form-control">
+                            <option value="">Kazi</option>
+                            <option>1.Formal</option>
+                            <option>2.Informal</option>
+                            <option>3.Unemployed</option>
+                            <option>4.Student</option>
+
+                        </select>
+                        <span asp-validation-for="Kazi105" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <select asp-for="IdadiMimba106" class="form-control">
+                            <option value="">Idadi ya Mimba</option>
+                            <option>0. Primigravida</option>
+                            <option>1. Multigravidity</option>
+                        </select>
+                        <span asp-validation-for="IdadiMimba106" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <select asp-for="WilayaUnayoishi107" class="form-control">
+                            <option value="">Wilaya Unayoishi</option>
+                            <option>1.Kaskazini A</option>
+                            <option>2.Kaskazini B</option>
+                            <option>3.Mjini</option>
+                            <option>4.Magharibi A</option>
+                            <option>5.Magharibi B</option>
+                            <option>6.Kati</option>
+                            <option>7.Kusini</option>
+                            <option>8.Mkoani</option>
+                            <option>9.Chake Chake</option>
+                            <option>10.Wete</option>
+                            <option>11.Micheweni</option>
+                        </select>
+                        <span asp-validation-for="WilayaUnayoishi107" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <input asp-for="NjeZanzibar108" class="form-control" />
+                        <span asp-validation-for="NjeZanzibar108" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="MdaKuishiZanzibar109" class="control-label"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <select asp-for="MdaKuishiZanzibar109" class="form-control">
+                            <option value="">Mda ulioishi Zanzibar</option>
+                            <option>1. Within One Year</option>
+                            <option>2. 1 to 5 Years</option>
+                            <option>3. More than 5 Years</option>
+                            <option>4. All Time</option>
+
+                        </select>
+                        <span asp-validation-for="MdaKuishiZanzibar109" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+                MATUMIZI YA HUDUMA ZA AFYA
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="KilomitaKituo201" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="KilomitaUjazo202" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="HudumaUjauzito203" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="UgumuKliniki204a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <select asp-for="KilomitaKituo201" class="form-control">
+                            <option value="">Umbali wa Kituo</option>
+                            <option>1.Within 5 km</option>
+                            <option>2.More than 5 km</option>
+                        </select>
+                        <span asp-validation-for="KilomitaKituo201" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="KilomitaUjazo202" class="form-control">
+                            <option value="">Umbali wa Ujazo</option>
+                            <option>1.Within 5 km</option>
+                            <option>2.More than 5 km</option>
+                        </select>
+                        <span asp-validation-for="KilomitaUjazo202" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <select asp-for="HudumaUjauzito203" class="form-control">
+                            <option value="">Njia ya Usafiri</option>
+                            <option>1.On foot</option>
+                            <option>2.Public transport</option>
+                            <option>3.Private transport</option>
+                        </select>
+                        <span asp-validation-for="HudumaUjauzito203" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="UgumuKliniki204a" class="form-control">
+                            <option value="">Ugumu kufika Kliniki</option>
+                            <option>1.Yes</option>
+                            <option>0.No</option>
+                        </select>
+                        <span asp-validation-for="UgumuKliniki204a" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="HudumaHapa205" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="KilomitaUjazo202" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="HudumaUjauzito203" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="UgumuKliniki204a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <select asp-for="HudumaHapa205" class="form-control">
+                            <option value="">Ugumu kufika Kliniki</option>
+                            <option>1.Yes</option>
+                            <option>0.No</option>
+                        </select>
+                        <span asp-validation-for="HudumaHapa205" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-12" style="color:blue">
+                <div class="row" style="padding-top:20px;">
+                    <div class="col-md-3">
+                        <label class="control-label">204b. Kama ndio, ni upi?</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="color:blue">
+
+                <div class="row" style="margin-left:40px;padding-bottom:7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="BasiMbaliAfya204b_1" /> @Html.DisplayNameFor(model => model.BasiMbaliAfya204b_1)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="UgumuUsafiriUmma204b_2" /> @Html.DisplayNameFor(model => model.UgumuUsafiriUmma204b_2)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="KukosaNauli204b_3" /> @Html.DisplayNameFor(model => model.KukosaNauli204b_3)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="MsafaraMrefu204b_4" /> @Html.DisplayNameFor(model => model.MsafaraMrefu204b_4)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="AnaishiMbaliBasi204b_5" /> @Html.DisplayNameFor(model => model.AnaishiMbaliBasi204b_5)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="AnaishiMbaliAfya204b_6" /> @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="AnaishiMbaliAfya204b_6" /> @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
+                    </label>
+                </div>
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
+                    <label class="form-check-label row">
+                        <input class="form-check-input" asp-for="Mengine204b_7" /> @Html.DisplayNameFor(model => model.Mengine204b_7)
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="TajaMengine204b" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div>
+
+                </div>
+
+                <input asp-for="TajaMengine204b" class="form-control" />
+                <span asp-validation-for="TajaMengine204b" class="text-danger"></span>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="UmepataHapaHuduma206" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <select asp-for="UmepataHapaHuduma206" class="form-control">
+                            <option value="">Kupata Huduma Hapa</option>
+                            <option>1.Yes</option>
+                            <option>0.No</option>
+                        </select>
+                        <span asp-validation-for="UmepataHapaHuduma206" class="text-danger"></span>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+                TAARIFA ZA AFYA NA UPIMAJI WA VVU
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="UmriMimba301" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="MwakaVVU302" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="MdaVVU303" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="DawaVVU304a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        @*<input asp-for="UmriMimba301" class="form-control" />*@
+                        <select asp-for="UmriMimba301" class="form-control input-group" id="Umrimimba">
+                            <option value="">Umri wa mimba</option>
+                        </select>
+                        <span asp-validation-for="UmriMimba301" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        @*<input asp-for="MwakaVVU302" class="form-control" />*@
+                        <select asp-for="MwakaVVU302" class="form-control input-group date" id="ddlYears">
+                            <option value="">Mwaka Uliogundulika</option>
+
+                        </select>
+                        <span asp-validation-for="MwakaVVU302" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="MdaVVU303" class="form-control">
+                            <option value="">Mda VVU</option>
+                            <option>1.Prior to this pregnancy</option>
+                            <option>2.During this pregnancy</option>
+
+                        </select>
+                        <span asp-validation-for="MdaVVU303" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <select asp-for="DawaVVU304a" class="form-control">
+                            <option value="">Unatumia Dawa?</option>
+                            <option>1.Yes</option>
+                            <option>0.No</option>
+                        </select>
+                        <span asp-validation-for="DawaVVU304a" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="LiniDawaVVU304b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="CTC304c" class="control-label"></label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        @*<input asp-for="LiniDawaVVU304b" class="form-control input-group date" />*@
+                        <select asp-for="LiniDawaVVU304b" class="form-control input-group date" id="ddlYearsLini">
+                            <option value="">Mwaka kutumia Dawa</option>
+
+                        </select>
+                        <span asp-validation-for="LiniDawaVVU304b" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="CTC304c" class="form-control" />
+                        <span asp-validation-for="CTC304c" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="padding-top:20px;">
+                <div class="col-md-12">
+                    <div class="row">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <a asp-action="Index">Rudi kwenye Taarifa</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+ {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            //Reference the DropDownList.
+            var ddlYears = document.getElementById("ddlYears");
+            var ddlYearsL = document.getElementById("ddlYearsLini");
+            var Umrimimba = document.getElementById("Umrimimba");
+
+
+            //Determine the Current Year.
+            var currentYear = (new Date()).getFullYear();
+
+            //Loop and add the Year values to DropDownList.
+            for (var i = 1980; i <= currentYear; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                ddlYears.appendChild(option);
+
+            }
+            for (var i = 1980; i <= currentYear; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                ddlYearsL.appendChild(option);
+
+            }
+            for (var i = 1; i <= 41; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                Umrimimba.appendChild(option);
+
+            }
+
+
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#phone').inputmask('(999)-999-9999');
+
+        });
+    </script>
+
+
+}

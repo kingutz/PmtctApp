@@ -1,0 +1,127 @@
+﻿@model Pmtct.Models.PmtctFollowUp
+
+@{
+    ViewData["Title"] = "Kufuta taarifa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-danger">Kufuta Taarifa</h1>
+
+<h3>Una uwakika unata kufuta huu Taarifa?</h3>
+
+<div>
+    @*<h4>PmtctData</h4>*@
+    <a asp-action="Index">Rudi kwenye Taarifa</a>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TareheHudhurio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TareheHudhurio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HaliYako305a)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HaliYako305a)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KamaHapana305a)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KamaHapana305a)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KamaNdio305b)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KamaNdio305b)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MpangoMtu306b)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MpangoMtu306b)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HaliMwenza307)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HaliMwenza307)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KuhudumiwaTofautiVVU308a)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NaniKutendea308b)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NaniKutendea308b)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UmejiungaVVU309a)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NdioTaja309b)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NdioTaja309b)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MamaMwambata310a)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MamaMwambata310a)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HudumaHulipatiwa310b)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HudumaHulipatiwa310b)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Rufaa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rufaa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TareheHudhurioLijalo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ufuatiliaji)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ufuatiliaji)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JinaMtoHuduma)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JinaMtoHuduma)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NambaMshiriki01)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NambaMshiriki01)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Futa" class="btn btn-danger" /> |
+        <a asp-action="Index">Rudi kwenye Taarifa</a>
+    </form>
+</div>

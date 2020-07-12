@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Pmtct.Models.PmtctFollowUp>
+
+@{
+    ViewData["Title"] = "Taarifa zilizopo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-info">Taarifa Zilizopo</h1>
+
+<p>
+    <a asp-action="Create">Ingiza Taarifa Mpya</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NambaMshiriki01)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TareheHudhurio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HaliYako305a)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.KamaHapana305a)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KamaNdio305b)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MpangoMtu306b)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HaliMwenza307)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaniKutendea308b)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NdioTaja309b)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MamaMwambata310a)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HudumaHulipatiwa310b)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rufaa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ufuatiliaji)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JinaMtoHuduma)
+            </th>*@
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NambaMshiriki01)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareheHudhurio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HaliYako305a)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.KamaHapana305a)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KamaNdio305b)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MpangoMtu306b)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HaliMwenza307)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KuhudumiwaTofautiVVU308a)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaniKutendea308b)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UmejiungaVVU309a)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NdioTaja309b)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MamaMwambata310a)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HudumaHulipatiwa310b)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rufaa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareheHudhurioLijalo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ufuatiliaji)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JinaMtoHuduma)
+            </td>*@
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,322 @@
+﻿@model Pmtct.Models.PmtctFollowUp
+
+@{
+    ViewData["Title"] = "Ingiza Taarifa Mpya";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-info">Ingiza Taarifa Mpya</h1>
+
+@*<h4>PmtctFollowUp</h4>*@
+@*<a asp-action="Index">Rudi kwenye Taarifa</a>*@
+<div class="row">
+    <nav class="nav nav-pills">
+        <a class="nav-link" asp-action="Index">Rudi kwenye Taarifa</a>
+        <a class="nav-link " asp-action="Create" asp-controller="Pmtct">Weka Taarifa Kuu</a>
+        <a class="nav-link" asp-action="Create" asp-controller="PmtctCare">Weka Taarifa Care</a>
+
+    </nav>
+</div>
+<hr />
+<div class="row">
+    
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @Html.Hidden("UserId", (object)ViewBag.UserId)
+        <input type="hidden" asp-for="UserId" />
+
+        <div class="row text-info">
+            <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+                TAARIFA ZA UPIMAJI
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="NambaMshiriki01" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="TareheHudhurio" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="HaliYako305a" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="KamaHapana305a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select asp-for="NambaMshiriki01" class="form-control" asp-items="ViewBag.NambaMshiriki01">
+                            <option value="">--Namba Ya Mshiriki --</option>
+                        </select>
+                        <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="TareheHudhurio" class="form-control" />
+                        <span asp-validation-for="TareheHudhurio" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="HaliYako305a" class="form-control">
+                            <option value="">Hali Yako</option>
+                            <option>0.Yes</option>
+                            <option>1.No</option>
+                        </select>
+                        <span asp-validation-for="HaliYako305a" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="KamaHapana305a" class="form-control">
+                            <option value="">Kama Hapana Taja</option>
+                            <option>1.Naogopa kutengwa na familia/jamii</option>
+                            <option>2.Naogopa kuachwa/kukimbiwa na mume/mwenza </option>
+                            <option>3.Naogopa kunyanyapaliwa</option>
+                            <option>4.Bado sijaamini kama nimeambukizwa VVU</option>
+                            <option>5.Sina mtu wa karibu/ninaemwamini</option>
+                            <option>6. Nimegundulika leo</option>
+                        </select>
+                        <span asp-validation-for="KamaHapana305a" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="KamaNdio305b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="MpangoMtu306b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="HaliMwenza307" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="KuhudumiwaTofautiVVU308a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <select asp-for="KamaNdio305b" class="form-control">
+                            <option value="">Kama ndio</option>
+                            <option>1.Partner</option>
+                            <option>2.Family member</option>
+                            <option>3.Parents</option>
+                            <option>4.Friends</option>
+                            <option>5.Colleague/co-worker</option>
+                            <option>6.Healthcare provider</option>
+                            <option>7.Others</option>
+
+                        </select>
+                        <span asp-validation-for="KamaNdio305b" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="MpangoMtu306b" class="form-control">
+                            <option value="">Mpango wa Kusema</option>
+                            <option>0.Yes</option>
+                            <option>1.No</option>
+                        </select>
+                        <span asp-validation-for="MpangoMtu306b" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="HaliMwenza307" class="form-control">
+                            <option value="">Hali ya Mwenza</option>
+                            <option>1.Positive</option>
+                            <option>2.Negative</option>
+                            <option>3.I don’t know</option>
+                        </select>
+                        <span asp-validation-for="HaliMwenza307" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="KuhudumiwaTofautiVVU308a" class="form-control">
+                            <option value="">Kuhudumi wa Tofauti</option>
+                            <option>0.Yes</option>
+                            <option>1.No</option>
+                        </select>
+                        <span asp-validation-for="KuhudumiwaTofautiVVU308a" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="NaniKutendea308b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="UmejiungaVVU309a" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="NdioTaja309b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="MamaMwambata310a" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <select asp-for="NaniKutendea308b" class="form-control">
+                            <option value="">Nani Kakutendea</option>
+                            <option>1.Partner</option>
+                            <option>2.Family member</option>
+                            <option>3.Parents</option>
+                            <option>4.Friends</option>
+                            <option>5.Colleague/co-worker</option>
+                            <option>6.Healthcare provider</option>
+                            <option>7.Others</option>
+
+                        </select>
+                        <span asp-validation-for="NaniKutendea308b" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <select asp-for="UmejiungaVVU309a" class="form-control">
+                            <option value="">Umejiunga na  Huduma VVU</option>
+                            <option>0.Yes</option>
+                            <option>1.No</option>
+                        </select>
+                        <span asp-validation-for="UmejiungaVVU309a" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="NdioTaja309b" class="form-control" />
+                        <span asp-validation-for="NdioTaja309b" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="MamaMwambata310a" class="form-control">
+                            <option value="">Umejiunga na  Huduma VVU</option>
+                            <option>0.Yes</option>
+                            <option>1.No</option>
+                            <option>1.NotApplicable</option>
+                        </select>
+                        <span asp-validation-for="MamaMwambata310a" class="text-danger"></span>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="HudumaHulipatiwa310b" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Rufaa" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="TareheHudhurioLijalo" class="control-label"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Ufuatiliaji" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <select asp-for="HudumaHulipatiwa310b" class="form-control">
+                            <option value="">Huduma Gani ulipatiwa?</option>
+                            <option>1.Counselling</option>
+                            <option>2.Health Education</option>
+                            <option>3.Follow-up</option>
+                            <option>4.Others</option>
+
+                        </select>
+                        <span asp-validation-for="HudumaHulipatiwa310b" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <input asp-for="Rufaa" class="form-control" />
+                        <span asp-validation-for="Rufaa" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <input asp-for="TareheHudhurioLijalo" class="form-control" />
+                        <span asp-validation-for="TareheHudhurioLijalo" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select asp-for="Ufuatiliaji" class="form-control">
+                            <option value="">Ufuatiliaji</option>
+                            <option>1.MISSAPP</option>
+                            <option>2.LTF</option>
+                            <option>3.Completely lost</option>
+                            <option>4.Transfer put</option>
+                            <option>5.Dead</option>
+                            <option>6.Patient opted out</option>
+
+                        </select>
+                        <span asp-validation-for="Ufuatiliaji" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="JinaMtoHuduma" class="control-label"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <input asp-for="JinaMtoHuduma" class="form-control" />
+                        <span asp-validation-for="JinaMtoHuduma" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12" style="margin-top:10px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </form>
+    
+</div>
+
+<div>
+    <a asp-action="Index">Rudi kwenye Taarifa</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
