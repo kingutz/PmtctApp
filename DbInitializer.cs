@@ -32,31 +32,17 @@ namespace Pmtct
 
 					var userResult = _userManager.CreateAsync(user, "pmtct2020").Result;
 				}
-				if (!context.Users.Any(usr => usr.UserName == "Analyst@pmtct.com"))
-				{
-					var user = new ApplicationUser()
-					{
-						UserName = "Analyst@pmtct.com",
-						Email = "Analyst@pmtct.com",
-						EmailConfirmed = true,
-					};
+				
 
-					var userResult = _userManager.CreateAsync(user, "pmtct2020").Result;
-				}
-
-				if (!_roleManager.RoleExistsAsync("Admin").Result)
+				if (!_roleManager.RoleExistsAsync("admin").Result)
 				{
-					var role = _roleManager.CreateAsync(new IdentityRole { Name = "Admin" }).Result;
+					var role = _roleManager.CreateAsync(new IdentityRole { Name = "admin" }).Result;
 				}
-				if (!_roleManager.RoleExistsAsync("Analyst").Result)
-				{
-					var role = _roleManager.CreateAsync(new IdentityRole { Name = "Analyst" }).Result;
-				}
+				
 				var adminUser = _userManager.FindByNameAsync("admin@pmtct.com").Result;
-				var adminRole = _userManager.AddToRolesAsync(adminUser, new string[] { "Admin" }).Result;
+				var adminRole = _userManager.AddToRolesAsync(adminUser, new string[] { "admin" }).Result;
 
-				var clerkUser = _userManager.FindByNameAsync("Analyst@pmtct.com").Result;
-				var clerkRole = _userManager.AddToRolesAsync(clerkUser, new string[] { "Analyst" }).Result;
+				
 			}
 
 		}

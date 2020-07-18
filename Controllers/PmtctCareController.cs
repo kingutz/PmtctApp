@@ -13,7 +13,7 @@ using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
-    [Authorize(Roles = "Admin,Analyst")]
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class PmtctCareController : Controller
     {
         private readonly PmtctContext _context;
@@ -31,7 +31,7 @@ namespace Pmtct.Controllers
         // GET: PmtctCare
         public async Task<IActionResult> Index()
         {
-            bool isAdmin = User.IsInRole("Admin");
+            bool isAdmin = User.IsInRole("admin");
 
             if (isAdmin)
             {
@@ -51,14 +51,20 @@ namespace Pmtct.Controllers
                 return NotFound();
             }
 
-            var pmtctCareCascade = await _context.PmtctCareCascade
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (pmtctCareCascade == null)
-            {
-                return NotFound();
-            }
+            bool isAdmin = User.IsInRole("admin");
+            var pmtctCareAdmin = await _context.PmtctCareCascade.FirstOrDefaultAsync(m => m.ID == id);
 
-            return View(pmtctCareCascade);
+            if (isAdmin)
+            {
+                return View(pmtctCareAdmin);
+            }
+            else
+            {
+                var pmtctCareUser = await _context.PmtctCareCascade.FirstOrDefaultAsync(m => m.ID == id && m.UserId == _userManager.GetUserId(User));
+                return View(pmtctCareUser);
+            }
+            
+           
         }
 
         // GET: PmtctCare/Create
@@ -127,7 +133,7 @@ namespace Pmtct.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,SN,ServiceName,ResponseName,ServiceDate,RemarksName,NambaMshiriki01")] PmtctCareCascade pmtctCareCascade)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,UserId,SN,ServiceName,ResponseName,ServiceDate,RemarksName,NambaMshiriki01")] PmtctCareCascade pmtctCareCascade)
         {
             if (id != pmtctCareCascade.ID)
             {

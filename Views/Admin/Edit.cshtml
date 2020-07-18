@@ -1,0 +1,151 @@
+﻿@model RoleEdit
+
+@{
+    ViewData["Title"] = "Add/remove Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Edit Role</h4></div>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" name="roleName" value="@Model.Role.Name" />
+    <input type="hidden" name="roleId" value="@Model.Role.Id" />
+
+    @*<h6 class="bg-info p-1 text-white">Role Name @Model.Role.Name </h6>*@
+
+    <div class="row">
+
+        <div class="col-md-12">
+           
+
+            @if (Model.NotMembersToRole.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-md-4" style="border-bottom:solid">
+                        <p class="text-info">
+                            All User/Users are member to this Role.
+                        </p>
+                    </div>
+                </div>
+
+            }
+
+            else
+            {
+
+                @foreach (ApplicationUser user in Model.NotMembersToRole)
+                {
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            @user.UserName
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="checkbox" id="addrole" name="IdToAdd" value="@user.Id">
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @if (Model.MemberToRole.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-info">
+                            No Users Are Members
+                        </p>
+                    </div>
+                </div>
+
+            }
+
+            else
+            {
+
+                @foreach (ApplicationUser user in Model.MemberToRole)
+                {
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            @user.UserName
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="checkbox" id="removerole" name="IdToDelete" value="@user.Id">
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+        </div>
+
+    </div>
+
+
+
+
+    @*<h6 class="bg-info p-1 text-white">Remove this  @Model.Role.Name role to..</h6>*@
+    
+    <button type="submit" id="btnrole" class="btn btn-primary">Add To Role</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+@section Scripts
+ {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#addrole').click(function ()
+        {
+    if ($(this).prop("checked") == true) {
+    $("#btnrole").text('Add Role').text();
+    
+        }
+    else if ($(this).prop("checked") == false) {
+
+        $("#btnrole").text('Roles').text().css("color","red");
+    }
+       
+    });
+    });
+        //for (var i = 0; i < form.elements.length; i++) {
+        //    if (form.elements[i].type == 'checkbox') {
+        //        if (form.elements[i].checked == true) {
+        //            $("#btnrole").text('Add Role').text();
+        //        }
+        //    }
+
+        $(document).ready(function () {
+            $('#removerole').click(function () {
+                if ($(this).prop("checked") == true) {
+                    $("#btnrole").text('Remove Role').text();
+
+                }
+                else if ($(this).prop("checked") == false) {
+
+                    $("#btnrole").text('Add Role').text();
+                }
+
+            });
+        });
+
+    </script>
+}

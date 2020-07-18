@@ -4,59 +4,70 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Models.PmtctModelView;
 
 namespace Pmtct.Controllers
 {
     //[Route("api/[controller]")]
     [Route("api/Pmtct")]
     [ApiController]
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
+
     public class PmtctApiController : ControllerBase
     {
         private readonly PmtctContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public PmtctApiController(PmtctContext context)
+        public PmtctApiController(PmtctContext context,RoleManager<IdentityRole> roleManager,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: api/PmtctApi
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PmtctData>>> GetPmt()
         {
-            return await _context.Pmt.ToListAsync();
-            //return await _context.Pmt.Include(p => p.followup).FirstOrDefault();
-        }
+            //return await _context.Pmt.ToListAsync();
+            bool isSuperUser = User.IsInRole("admin") || User.IsInRole("analyst");
+
+            if (isSuperUser)
+            {
+                return await _context.Pmt.ToListAsync();
+            }
+            else
+                return await _context.Pmt.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync();
+
+           }
+
+
+
+
+        //GET: api/PmtctApi/5
         [HttpGet("{id}")]
-        public PmtctData  GetPmtctData(string id)
+        public async Task<ActionResult<PmtctData>> GetPmtctData(string id)
         {
-
-            return _context.Pmt.Include(i => i.followup).Include(i=>i.careCascades).
-                FirstOrDefault(i=>i.NambaMshiriki01==id);
-
+            var pmtctData = await _context.Pmt.FindAsync(id);
+           
 
 
+            if (pmtctData == null)
+            {
+                return NotFound();
+            }
+
+            return pmtctData;
         }
-
-
-        // GET: api/PmtctApi/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<PmtctData>> GetPmtctData(string id)
-        //{
-        //    var pmtctData = await _context.Pmt.FindAsync(id);
-
-        //    if (pmtctData == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return pmtctData;
-        //}
 
         // PUT: api/PmtctApi/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

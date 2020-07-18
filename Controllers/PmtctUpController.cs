@@ -12,7 +12,7 @@ using Pmtct.Models;
 
 namespace Pmtct.Controllers
 {
-    [Authorize(Roles = "Admin,Analyst")]
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class PmtctUpController : Controller
     {
         private readonly PmtctContext _context;
@@ -29,7 +29,7 @@ namespace Pmtct.Controllers
         // GET: PmtctUp
         public async Task<IActionResult> Index()
         {
-            bool isAdmin = User.IsInRole("Admin");
+            bool isAdmin = User.IsInRole("admin");
 
             if (isAdmin)
             {
@@ -58,14 +58,19 @@ namespace Pmtct.Controllers
                 return NotFound();
             }
 
-            var pmtctFollowUp = await _context.PmtctFollowUp
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (pmtctFollowUp == null)
-            {
-                return NotFound();
-            }
+            bool isAdmin = User.IsInRole("admin");
+            var pmtctAdmin = await _context.PmtctFollowUp.FirstOrDefaultAsync(m => m.ID == id);
 
-            return View(pmtctFollowUp);
+            if (isAdmin)
+            {
+                return View(pmtctAdmin);
+            }
+            else
+            {
+                var pmtctUser = await _context.PmtctFollowUp.FirstOrDefaultAsync(m => m.ID == id && m.UserId == _userManager.GetUserId(User));
+                return View(pmtctUser);
+            }
+            
         }
 
         // GET: PmtctUp/Create
@@ -113,7 +118,7 @@ namespace Pmtct.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Namba01,TareheHudhurio,HaliYako305a,KamaHapana305a,KamaNdio305b,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a,NaniKutendea308b,UmejiungaVVU309a,NdioTaja309b,MamaMwambata310a,HudumaHulipatiwa310b,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma,NambaMshiriki01")] PmtctFollowUp pmtctFollowUp)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Namba01,UserId,TareheHudhurio,HaliYako305a,KamaHapana305a,KamaNdio305b,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a,NaniKutendea308b,UmejiungaVVU309a,NdioTaja309b,MamaMwambata310a,HudumaHulipatiwa310b,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma,NambaMshiriki01")] PmtctFollowUp pmtctFollowUp)
         {
             if (id != pmtctFollowUp.ID)
             {

@@ -203,32 +203,34 @@ namespace Pmtct.Migrations
                 name: "PmtctCareCascade",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false),
-                    NambaMshiriki01 = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(nullable: false),
                     SN = table.Column<string>(maxLength: 255, nullable: false),
                     ServiceName = table.Column<string>(maxLength: 255, nullable: false),
                     ResponseName = table.Column<bool>(nullable: false),
                     ServiceDate = table.Column<DateTime>(nullable: false),
-                    RemarksName = table.Column<string>(maxLength: 255, nullable: true)
+                    RemarksName = table.Column<string>(maxLength: 255, nullable: true),
+                    NambaMshiriki01 = table.Column<string>(nullable: false),
+                    pmtctDataNambaMshiriki01 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PmtctCareCascade", x => new { x.ID, x.NambaMshiriki01 });
+                    table.PrimaryKey("PK_PmtctCareCascade", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PmtctCareCascade_Pmt_NambaMshiriki01",
-                        column: x => x.NambaMshiriki01,
+                        name: "FK_PmtctCareCascade_Pmt_pmtctDataNambaMshiriki01",
+                        column: x => x.pmtctDataNambaMshiriki01,
                         principalTable: "Pmt",
                         principalColumn: "NambaMshiriki01",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PmtctFollowUp",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false),
-                    NambaMshiriki01 = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(nullable: false),
                     TareheHudhurio = table.Column<DateTime>(nullable: false),
                     HaliYako305a = table.Column<string>(maxLength: 255, nullable: false),
@@ -245,17 +247,19 @@ namespace Pmtct.Migrations
                     Rufaa = table.Column<string>(maxLength: 255, nullable: true),
                     TareheHudhurioLijalo = table.Column<DateTime>(nullable: false),
                     Ufuatiliaji = table.Column<string>(maxLength: 255, nullable: false),
-                    JinaMtoHuduma = table.Column<string>(maxLength: 255, nullable: true)
+                    JinaMtoHuduma = table.Column<string>(maxLength: 255, nullable: true),
+                    NambaMshiriki01 = table.Column<string>(nullable: false),
+                    pmtctDataNambaMshiriki01 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PmtctFollowUp", x => new { x.ID, x.NambaMshiriki01 });
+                    table.PrimaryKey("PK_PmtctFollowUp", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PmtctFollowUp_Pmt_NambaMshiriki01",
-                        column: x => x.NambaMshiriki01,
+                        name: "FK_PmtctFollowUp_Pmt_pmtctDataNambaMshiriki01",
+                        column: x => x.pmtctDataNambaMshiriki01,
                         principalTable: "Pmt",
                         principalColumn: "NambaMshiriki01",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -296,14 +300,14 @@ namespace Pmtct.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PmtctCareCascade_NambaMshiriki01",
+                name: "IX_PmtctCareCascade_pmtctDataNambaMshiriki01",
                 table: "PmtctCareCascade",
-                column: "NambaMshiriki01");
+                column: "pmtctDataNambaMshiriki01");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PmtctFollowUp_NambaMshiriki01",
+                name: "IX_PmtctFollowUp_pmtctDataNambaMshiriki01",
                 table: "PmtctFollowUp",
-                column: "NambaMshiriki01");
+                column: "pmtctDataNambaMshiriki01");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

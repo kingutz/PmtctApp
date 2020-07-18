@@ -4,15 +4,15 @@
     ViewData["Title"] = "Ingiza Taarifa Mpya";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1 class="text-info">Ingiza Taarifa Mpya</h1>
+<h1 class="text-info">New Record</h1>
 
 @*<h4>PmtctFollowUp</h4>*@
 @*<a asp-action="Index">Rudi kwenye Taarifa</a>*@
 <div class="row">
     <nav class="nav nav-pills">
-        <a class="nav-link" asp-action="Index">Rudi kwenye Taarifa</a>
-        <a class="nav-link " asp-action="Create" asp-controller="Pmtct">Weka Taarifa Kuu</a>
-        <a class="nav-link" asp-action="Create" asp-controller="PmtctUp">Weka Taarifa Upimaji</a>
+        <a class="nav-link" asp-action="Index">Care</a>
+        <a class="nav-link " asp-action="Create" asp-controller="Pmtct">Pmtct</a>
+        <a class="nav-link" asp-action="Create" asp-controller="PmtctUp">Folowup</a>
 
 
     </nav>
@@ -27,7 +27,7 @@
             <input type="hidden" asp-for="UserId" />
 
             <div class="row text-info">
-                <div class="col-md-8 " style="color:brown;background-color:antiquewhite;margin:10px">
+                <div class="col-md-8 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
                     PMTCT CARE CASCADE
                 </div>
 
@@ -116,7 +116,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <input type="submit" onclick="jQuery('#pcc').text('Asante sana!!').text();" value="Create" class="btn btn-primary" />
                         </div>
 
                     </div>

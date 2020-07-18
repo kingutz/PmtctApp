@@ -5,244 +5,271 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-info">Taarifa Zilizopo</h1>
+<h1 class="text-info">Pmtct Record</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">New Record</a>
-</p>
+</p>*@
+<div class="row">
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-md-3">
+                         
+                    <a class="btn btn-primary btn-sm" asp-action="Create">New Record</a>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" 
+                             data-toggle="dropdown">
+                        Export
+                    </button>
+                    <div class="dropdown-menu" >
+                        <a class="dropdown-item text-success" asp-action="ExcelDoc" asp-controller="PmtctExport">excel</a>
+                        <a class="dropdown-item text-primary" asp-action="CSV" asp-controller="PmtctExport">csv</a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
+    <table class="table">
+        <thead>
+            <tr>
 
-            <th>
-                @Html.DisplayNameFor(model => model.NambaMshiriki01)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WilayaUnayoishi107)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KiwangoElimu102)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CTC304c)
-            </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.Wilaya02)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TareheMahojiano03)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kituo04)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JinaAnayehoji05)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ngazikituo06)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MdaKuishiZanzibar109)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NambaMshiriki01)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WilayaUnayoishi107)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KiwangoElimu102)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CTC304c)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Wilaya02)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TareheMahojiano03)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Kituo04)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.JinaAnayehoji05)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ngazikituo06)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MdaKuishiZanzibar109)
+                    </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Umri101)
-        </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Umri101)
+                    </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.IdadiMimba106)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HaliNdoa103)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KipatoMwezi104)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kazi105)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NjeZanzibar108)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KilomitaKituo201)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KilomitaUjazo202)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HudumaUjauzito203)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UgumuKliniki204a)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HudumaHapa205)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BasiMbaliAfya204b_1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UgumuUsafiriUmma204b_2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KukosaNauli204b_3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MsafaraMrefu204b_4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnaishiMbaliBasi204b_5)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mengine204b_7)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TajaMengine204b)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UmepataHapaHuduma206)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UmriMimba301)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MwakaVVU302)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MdaVVU303)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DawaVVU304a)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LiniDawaVVU304b)
-        </th>*@
-            <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdadiMimba106)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HaliNdoa103)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KipatoMwezi104)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Kazi105)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NjeZanzibar108)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KilomitaKituo201)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KilomitaUjazo202)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HudumaUjauzito203)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UgumuKliniki204a)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HudumaHapa205)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BasiMbaliAfya204b_1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UgumuUsafiriUmma204b_2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KukosaNauli204b_3)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MsafaraMrefu204b_4)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AnaishiMbaliBasi204b_5)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mengine204b_7)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TajaMengine204b)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UmepataHapaHuduma206)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UmriMimba301)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MwakaVVU302)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MdaVVU303)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DawaVVU304a)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LiniDawaVVU304b)
+                    </th>*@
+                <th></th>
 
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-
-
-            <td>
-                @Html.DisplayFor(modelItem => item.NambaMshiriki01)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WilayaUnayoishi107)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KiwangoElimu102)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CTC304c)
-            </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Wilaya02)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TareheMahojiano03)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kituo04)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JinaAnayehoji05)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ngazikituo06)
-        </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Umri101)
-        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NambaMshiriki01)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WilayaUnayoishi107)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KiwangoElimu102)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CTC304c)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Wilaya02)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TareheMahojiano03)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kituo04)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JinaAnayehoji05)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ngazikituo06)
+                        </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.IdadiMimba106)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HaliNdoa103)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KipatoMwezi104)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kazi105)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NjeZanzibar108)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KilomitaKituo201)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KilomitaUjazo202)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HudumaUjauzito203)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UgumuKliniki204a)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HudumaHapa205)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BasiMbaliAfya204b_1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UgumuUsafiriUmma204b_2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KukosaNauli204b_3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MsafaraMrefu204b_4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnaishiMbaliBasi204b_5)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnaishiMbaliAfya204b_6)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mengine204b_7)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TajaMengine204b)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UmepataHapaHuduma206)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UmriMimba301)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MwakaVVU302)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MdaVVU303)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DawaVVU304a)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LiniDawaVVU304b)
-        </td>*@
 
-            <td class="row">
-                <a asp-action="Edit" asp-route-id="@item.NambaMshiriki01">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NambaMshiriki01">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NambaMshiriki01">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Umri101)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdadiMimba106)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HaliNdoa103)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KipatoMwezi104)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kazi105)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NjeZanzibar108)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KilomitaKituo201)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KilomitaUjazo202)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HudumaUjauzito203)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UgumuKliniki204a)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HudumaHapa205)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BasiMbaliAfya204b_1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UgumuUsafiriUmma204b_2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KukosaNauli204b_3)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MsafaraMrefu204b_4)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AnaishiMbaliBasi204b_5)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AnaishiMbaliAfya204b_6)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mengine204b_7)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TajaMengine204b)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UmepataHapaHuduma206)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UmriMimba301)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MwakaVVU302)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MdaVVU303)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DawaVVU304a)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LiniDawaVVU304b)
+                        </td>*@
+
+                    <td class="row">
+                        <a asp-action="Edit" asp-route-id="@item.NambaMshiriki01">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.NambaMshiriki01">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.NambaMshiriki01">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -146,7 +146,7 @@ namespace Pmtct.Models {
         [Display(Name = "204b 6. Anaishi mbali na kituo cha Afya")]
         public bool AnaishiMbaliAfya204b_6 { get; set; }
 
-        [Display(Name = "204b 7. Anaishi mbali na kituo cha Afya")]
+        [Display(Name = "204b 7. Mengineyo")]
         public bool Mengine204b_7 { get; set; }
 
         [StringLength(255)]

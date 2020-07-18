@@ -2,45 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Models.PmtctModelView;
 
 namespace Pmtct.Controllers
 {
-    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
-     
-    public class PmtctController : Controller
+    public class AdministrationController : Controller
     {
         private readonly PmtctContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public PmtctController(PmtctContext context, RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+
+        public AdministrationController(PmtctContext context)
         {
             _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
         }
 
-        // GET: Pmtct
-        public async Task<IActionResult> Index()
-        {
-            bool isAdmin = User.IsInRole("admin");
+        //// GET: Administration
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Pmt.ToListAsync());
+        //}
+        // GET: Instructors
+        //public async Task<IActionResult> Index(string  idPmtF)
+        //{
+        //    var viewModel = new PmtctVM();
+        //    viewModel.pmtctsdata = await _context.Pmt
+        //          .Include(i => i.followup)
+        //          .Include(i => i.careCascades)
+        //          .OrderBy(i => i.Kituo04)
+        //          .ToListAsync();
 
-            if (isAdmin)
-            {
-                return View(await _context.Pmt.ToListAsync());
-            }
-            else
-            return View(await _context.Pmt.Where(p=>p.UserId==_userManager.GetUserId(User)).ToListAsync());
-            }
+        //    if (idPmtF != null)
+        //    {
+        //        ViewData["NambaMshiriki01"] = idPmtF;
+        //        PmtctData pmtcts = viewModel.pmtctsdata.Where(
+        //            i => i.NambaMshiriki01 == idPmtF).Single();
+        //        //viewModel.followUps = pmtcts.followup(s => s.);
+        //    }
 
-        // GET: Pmtct/Details/5
+        //    if (idPmtF != null)
+        //    {
+        //        ViewData["CourseID"] = idPmtF;
+        //        var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
+        //        await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
+        //        foreach (Enrollment enrollment in selectedCourse.Enrollments)
+        //        {
+        //            await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
+        //        }
+        //        viewModel.Enrollments = selectedCourse.Enrollments;
+        //    }
+
+        //    return View(viewModel);
+        //}
+
+
+        // GET: Administration/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -48,58 +67,39 @@ namespace Pmtct.Controllers
                 return NotFound();
             }
 
-            bool isAdmin = User.IsInRole("admin");
-            var pmtctAdmin = await _context.Pmt.FirstOrDefaultAsync(m => m.NambaMshiriki01 == id);
-            
-            if (isAdmin)
+            var pmtctData = await _context.Pmt
+                .FirstOrDefaultAsync(m => m.NambaMshiriki01 == id);
+            if (pmtctData == null)
             {
-                return View(pmtctAdmin);
+                return NotFound();
             }
-            else
-            {
-                var pmtctUser = await _context.Pmt.FirstOrDefaultAsync(m => m.NambaMshiriki01 == id && m.UserId == _userManager.GetUserId(User));
-                return View(pmtctUser);
-            }
-            
 
-           
+            return View(pmtctData);
         }
 
-        // GET: Pmtct/Create
+        // GET: Administration/Create
         public IActionResult Create()
         {
-            ViewBag.UserId = _userManager.GetUserId(User);
             return View();
         }
 
-        // POST: Pmtct/Create
+        // POST: Administration/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        
-        
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NambaMshiriki01,UserId,Wilaya02,TareheMahojiano03," +
-            "Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101," +
-            "WilayaUnayoishi107,IdadiMimba106,HaliNdoa103,KipatoMwezi104,Kazi105,NjeZanzibar108," +
-            "KilomitaKituo201,KilomitaUjazo202,HudumaUjauzito203,UgumuKliniki204a,HudumaHapa205," +
-            "BasiMbaliAfya204b_1,UgumuUsafiriUmma204b_2,KukosaNauli204b_3," +
-            "MsafaraMrefu204b_4,AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7," +
-            "TajaMengine204b,UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a," +
-            "LiniDawaVVU304b,CTC304c")] PmtctData pmtctData)
-        {     
-
+        public async Task<IActionResult> Create([Bind("NambaMshiriki01,UserId,Wilaya02,TareheMahojiano03,Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101,WilayaUnayoishi107,IdadiMimba106,HaliNdoa103,KipatoMwezi104,Kazi105,NjeZanzibar108,KilomitaKituo201,KilomitaUjazo202,HudumaUjauzito203,UgumuKliniki204a,HudumaHapa205,BasiMbaliAfya204b_1,UgumuUsafiriUmma204b_2,KukosaNauli204b_3,MsafaraMrefu204b_4,AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7,TajaMengine204b,UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a,LiniDawaVVU304b,CTC304c")] PmtctData pmtctData)
+        {
             if (ModelState.IsValid)
             {
                 _context.Add(pmtctData);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
             return View(pmtctData);
         }
 
-        // GET: Pmtct/Edit/5
+        // GET: Administration/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -115,7 +115,7 @@ namespace Pmtct.Controllers
             return View(pmtctData);
         }
 
-        // POST: Pmtct/Edit/5
+        // POST: Administration/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -150,7 +150,7 @@ namespace Pmtct.Controllers
             return View(pmtctData);
         }
 
-        // GET: Pmtct/Delete/5
+        // GET: Administration/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -168,7 +168,7 @@ namespace Pmtct.Controllers
             return View(pmtctData);
         }
 
-        // POST: Pmtct/Delete/5
+        // POST: Administration/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

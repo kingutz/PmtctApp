@@ -25,16 +25,16 @@ namespace Pmtct.Data
 
         
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
             
-            builder.Entity<PmtctCareCascade>()
-           .HasKey(c => new { c.ID, c.NambaMshiriki01 });
-            builder.Entity<PmtctFollowUp>()
-           .HasKey(c => new { c.ID, c.NambaMshiriki01 });
+        //    builder.Entity<PmtctCareCascade>()
+        //   .HasKey(c => new { c.ID, c.NambaMshiriki01 });
+        //    builder.Entity<PmtctFollowUp>()
+        //   .HasKey(c => new { c.ID, c.NambaMshiriki01 });
 
-            base.OnModelCreating(builder);
-        }
+        //    base.OnModelCreating(builder);
+        //}
     }
 
 

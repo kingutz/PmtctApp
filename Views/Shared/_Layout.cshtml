@@ -23,6 +23,16 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("admin")|| User.IsInRole("analyst"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                    </li>
+
+                                }
+                            }
 
                         </ul>
                     </div>
@@ -44,6 +54,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

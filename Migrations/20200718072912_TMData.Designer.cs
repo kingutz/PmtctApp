@@ -9,7 +9,7 @@ using Pmtct.Data;
 namespace Pmtct.Migrations
 {
     [DbContext(typeof(PmtctContext))]
-    [Migration("20200711085439_TMData")]
+    [Migration("20200718072912_TMData")]
     partial class TMData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,9 +216,11 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Pmtct.Models.PmtctCareCascade", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("NambaMshiriki01")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RemarksName")
@@ -245,9 +247,12 @@ namespace Pmtct.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID", "NambaMshiriki01");
+                    b.Property<string>("pmtctDataNambaMshiriki01")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("NambaMshiriki01");
+                    b.HasKey("ID");
+
+                    b.HasIndex("pmtctDataNambaMshiriki01");
 
                     b.ToTable("PmtctCareCascade");
                 });
@@ -416,10 +421,8 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Pmtct.Models.PmtctFollowUp", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("NambaMshiriki01")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("HaliMwenza307")
                         .IsRequired()
@@ -465,6 +468,10 @@ namespace Pmtct.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
+                    b.Property<string>("NambaMshiriki01")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NaniKutendea308b")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -499,9 +506,12 @@ namespace Pmtct.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID", "NambaMshiriki01");
+                    b.Property<string>("pmtctDataNambaMshiriki01")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("NambaMshiriki01");
+                    b.HasKey("ID");
+
+                    b.HasIndex("pmtctDataNambaMshiriki01");
 
                     b.ToTable("PmtctFollowUp");
                 });
@@ -561,18 +571,14 @@ namespace Pmtct.Migrations
                 {
                     b.HasOne("Pmtct.Models.PmtctData", "pmtctData")
                         .WithMany("careCascades")
-                        .HasForeignKey("NambaMshiriki01")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("pmtctDataNambaMshiriki01");
                 });
 
             modelBuilder.Entity("Pmtct.Models.PmtctFollowUp", b =>
                 {
                     b.HasOne("Pmtct.Models.PmtctData", "pmtctData")
                         .WithMany("followup")
-                        .HasForeignKey("NambaMshiriki01")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("pmtctDataNambaMshiriki01");
                 });
 #pragma warning restore 612, 618
         }
