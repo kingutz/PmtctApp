@@ -1,11 +1,11 @@
-﻿@model string
+﻿@model IdentityRole
 <div class="bg-primary m-1 p-1"><h4>Create Role</h4></div>
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form asp-action="Create" method="post">
     <div class="row">
         <div class="col-md-2">
-            <select for="Name" class="form-control">
+            <select asp-for="Name" class="form-control">
                 <option value="">Roles</option>
                 <option>admin</option>
                 <option>dataentry</option>
@@ -17,6 +17,6 @@
             <button type="submit" class="btn btn-primary">Create</button>
             <a asp-action="Index" class="btn btn-secondary">Cancel</a>
         </div>
-        </div>
-    
+    </div>
+
 </form>

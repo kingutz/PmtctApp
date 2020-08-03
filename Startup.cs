@@ -16,7 +16,9 @@ using Pmtct.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Pmtct.Models;
 using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using ZNetCS.AspNetCore.Logging.EntityFrameworkCore;
 
 namespace Pmtct
 {
@@ -33,14 +35,17 @@ namespace Pmtct
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PmtctContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultUI()
-                //(options => options.SignIn.RequireConfirmedAccount = false
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("PmtctContext")));
+            //services.AddDbContext<PmtctContext>(options =>
+            //   options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-                //)
-                .AddEntityFrameworkStores<PmtctContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultUI().AddDefaultTokenProviders()
+                   .AddEntityFrameworkStores<PmtctContext>();
+                 //services.AddScoped<IPmtctService, PmtctService>();
+            // requires for http context access.
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             
@@ -86,21 +91,45 @@ namespace Pmtct
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             DbInitializer.Initialize(app);
-            if (env.IsDevelopment ())
+            
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                
+               
+            
+                //ILogger logger = loggerFactory.CreateLogger("Configure");
+                //app.Use(
+                //    async (context, next) =>
+                //    {
+                //        logger.LogInformation(1, "Handling request.");
+                //        await next.Invoke();
+                //        logger.LogInformation(2, "Finished handling request.");
+                //    });
+
+                //app.Run(async context => { await context.Response.WriteAsync("Hello World"); });
             }
             else
             {
+                app.UseHsts();
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+
             }
+        //loggerFactory.AddEntityFramework<PmtctContext>(app.ApplicationServices);
+        //loggerFactory.WithFilter(
+        //new FilterLoggerSettings
+        //    {
+        //            { "Microsoft", LogLevel.None },
+        //            { "System", LogLevel.None }
+        //    })
+        //             .AddEntityFramework<PmtctContext, ExtendedLog>(app.ApplicationServices);
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

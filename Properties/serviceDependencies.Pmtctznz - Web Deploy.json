@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup2')]/providers/Microsoft.Sql/servers/pmtctdbserver/databases/Pmtct_db",
+      "type": "mssql.azure",
+      "connectionId": "PmtContextConnection",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup2')]/providers/Microsoft.Sql/servers/pmtctdbserver/databases/Pmtct_db",
+      "type": "mssql.azure",
+      "connectionId": "PmtctContext",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup2')]/providers/Microsoft.Sql/servers/pmtctdbserver/databases/Pmtct_db",
+      "type": "mssql.azure",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

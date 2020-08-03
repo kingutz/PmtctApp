@@ -14,7 +14,8 @@ namespace Pmtct.Models
 
         [Display(Name = "Role Name:")]
         public string Name { get; set; }
-
+        [Display(Name = "Select Role:")]
         public bool Selected { get; set; }
+        
     }
 }

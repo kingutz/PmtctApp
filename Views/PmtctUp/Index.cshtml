@@ -1,134 +1,164 @@
 ﻿@model IEnumerable<Pmtct.Models.PmtctFollowUp>
 
 @{
-    ViewData["Title"] = "Taarifa zilizopo";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-info">Record</h1>
+<div class="row">
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-md-3">
 
-<p>
-    <a asp-action="Create">New Record</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NambaMshiriki01)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TareheHudhurio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HaliYako305a)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.KamaHapana305a)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KamaNdio305b)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MpangoMtu306b)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HaliMwenza307)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NaniKutendea308b)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NdioTaja309b)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MamaMwambata310a)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HudumaHulipatiwa310b)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rufaa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ufuatiliaji)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JinaMtoHuduma)
-            </th>*@
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+                <a class="btn btn-success btn-sm" asp-action="Create">New Record</a>
+
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if (User.IsInRole("admin") || User.IsInRole("analyst"))
+                {
+                    <div class="col-md-4">
+                        <div class="dropdown">
+                            <button class="btn btn-success btn-sm dropdown-toggle" type="button"
+                                    data-toggle="dropdown">
+                                Export
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item text-success" asp-action="ExcelDoc" asp-controller="PmtctUpExcel">excel</a>
+                                <a class="dropdown-item text-primary" asp-action="CSV" asp-controller="PmtctUpCSV">csv</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container-fluid">
+    <div class="row flex-row flex-nowrap text-success">
+        <div class="col-md-3 card card-block card-primary card-inverse invisible">
+        </div>
+
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.NambaMshiriki01)
+        </div>
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.TareheHudhurio)
+        </div>
+        <div class="col-md-4 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.HaliYako305a)
+        </div>
+       
+        
+        <div class="col-md-5 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.MpangoMtu306b)
+        </div>
+        <div class="col-md-6 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.HaliMwenza307)
+        </div>
+        <div class="col-md-7 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
+        </div>
+        
+        <div class="col-md-7 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
+        </div>
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.NdioTaja309b)
+        </div>
+        <div class="col-md-6 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.MamaMwambata310a)
+        </div>
+        
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.Rufaa)
+        </div>
+        <div class="col-md-3 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
+        </div>
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.Ufuatiliaji)
+        </div>
+        <div class="col-md-3 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.JinaMtoHuduma)
+        </div>
+        <div class="col-md-4 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.UserId)
+        </div>
+
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row flex-row flex-nowrap">
+            <div class="col-md-3 ">
+                <div class="row">
+                    <div class="col-md-3 btn-success ">
+                        <a class="text-white" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                    </div>
+                    <div class="col-md-4 btn-success">
+                        <a class="text-white" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                    </div>
+                    <div class="col-md-4 btn-danger">
+                        <a class="text-white" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-2 card card-block card-primary card-inverse">
                 @Html.DisplayFor(modelItem => item.NambaMshiriki01)
-            </td>
-            <td>
+            </div>
+            <div class="col-md-2 card card-block card-primary card-inverse">
                 @Html.DisplayFor(modelItem => item.TareheHudhurio)
-            </td>
-            <td>
+            </div>
+            <div class="col-md-4 card card-block card-primary card-inverse">
                 @Html.DisplayFor(modelItem => item.HaliYako305a)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.KamaHapana305a)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KamaNdio305b)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MpangoMtu306b)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HaliMwenza307)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KuhudumiwaTofautiVVU308a)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NaniKutendea308b)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UmejiungaVVU309a)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NdioTaja309b)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MamaMwambata310a)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HudumaHulipatiwa310b)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rufaa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TareheHudhurioLijalo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ufuatiliaji)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JinaMtoHuduma)
-            </td>*@
+            </div>
+           
             
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            <div class="col-md-5 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.MpangoMtu306b)
+            </div>
+            <div class="col-md-6 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.HaliMwenza307)
+            </div>
+            <div class="col-md-7 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.KuhudumiwaTofautiVVU308a)
+            </div>
+           
+            <div class="col-md-7 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.UmejiungaVVU309a)
+            </div>
+            <div class="col-md-2 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.NdioTaja309b)
+            </div>
+            <div class="col-md-6 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.MamaMwambata310a)
+            </div>
+           
+            <div class="col-md-2 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.Rufaa)
+            </div>
+            <div class="col-md-3 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.TareheHudhurioLijalo)
+            </div>
+            <div class="col-md-2 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.Ufuatiliaji)
+            </div>
+            <div class="col-md-3 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.JinaMtoHuduma)
+            </div>
+            <div class="col-md-4 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.UserId)
+            </div>
+
+        </div>
+    }
+</div>

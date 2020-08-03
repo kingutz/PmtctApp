@@ -9,7 +9,7 @@ namespace Pmtct.Models
     {
 
         public IEnumerable<PmtctData> pmtcts { get; set; }
-        public IEnumerable<PmtctCareCascade> pmtctCares { get; set; }
+       
         public IEnumerable<PmtctFollowUp> pmtctFollows { get; set; }
     }
 }

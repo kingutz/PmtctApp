@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pmtct.Data;
@@ -9,37 +10,40 @@ using Pmtct.Data;
 namespace Pmtct.Migrations
 {
     [DbContext(typeof(PmtctContext))]
-    [Migration("20200718072912_TMData")]
-    partial class TMData
+    [Migration("20200730132001_PMTData")]
+    partial class PMTData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5");
+                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -48,17 +52,18 @@ namespace Pmtct.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -71,17 +76,18 @@ namespace Pmtct.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -93,17 +99,17 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -115,10 +121,10 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -130,16 +136,16 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -149,56 +155,56 @@ namespace Pmtct.Migrations
             modelBuilder.Entity("Pmtct.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -208,310 +214,368 @@ namespace Pmtct.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Pmtct.Models.PmtctCareCascade", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("NambaMshiriki01")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RemarksName")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<bool>("ResponseName")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SN")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<DateTime>("ServiceDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ServiceName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("pmtctDataNambaMshiriki01")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("pmtctDataNambaMshiriki01");
-
-                    b.ToTable("PmtctCareCascade");
-                });
-
             modelBuilder.Entity("Pmtct.Models.PmtctData", b =>
                 {
-                    b.Property<string>("NambaMshiriki01")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("AnaishiMbaliAfya204b_6")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("AnaishiMbaliBasi204b_5")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("BasiMbaliAfya204b_1")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("CTC304c")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DawaVVU304a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<bool>("DeliveryFacility402")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DeliveryFacilityDate402")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EarlyBirth403a")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("EarlyBirthDate403a")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("HaliNdoa103")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("HudumaHapa205")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("HudumaUjauzito203")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("IdadiMimba106")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<bool>("InfantBreastfeeding404a")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("InfantBreastfeedingDate404a")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("InfantHIVstatus403b")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("InfantHIVstatusDate403b")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("InitiatedART401")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("InitiatedARTDate401")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("JinaAnayehoji05")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("Kazi105")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("KilomitaKituo201")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("KilomitaUjazo202")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<double?>("KipatoMwezi104")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<string>("Kituo04")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("KiwangoElimu102")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<bool>("KukosaNauli204b_3")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("LiniDawaVVU304b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("MdaKuishiZanzibar109")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("MdaVVU303")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<bool>("Mengine204b_7")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("MotherResults403c")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("MotherResultsDate403c")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("MsafaraMrefu204b_4")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("MwakaVVU302")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("NambaMshiriki01")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("Ngazikituo06")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("NjeZanzibar108")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("RemarksName")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("TajaMengine204b")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<DateTime>("TareheMahojiano03")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UgumuKliniki204a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<bool>("UgumuUsafiriUmma204b_2")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("UmepataHapaHuduma206")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<double?>("Umri101")
                         .IsRequired()
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double?>("UmriMimba301")
                         .IsRequired()
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wilaya02")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WilayaUnayoishi107")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.HasKey("NambaMshiriki01");
+                    b.HasKey("ID");
 
                     b.ToTable("Pmt");
                 });
 
             modelBuilder.Entity("Pmtct.Models.PmtctFollowUp", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("BadosijaaminiVVUliwa306a4")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Elimuafya310b2")
+                        .HasColumnType("bit");
 
                     b.Property<string>("HaliMwenza307")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("HaliYako305a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("HudumaHulipatiwa310b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("JinaMtoHuduma")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("KamaHapana305a")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("KamaNdio305b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("KuhudumiwaTofautiVVU308a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("MamaMwambata310a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<bool>("Mfanyakazi305b5")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mfanyakazi308b5")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mhudumu308b6")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MpangoMtu306b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("NambaMshiriki01")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("Mwanafamiliaa305b2")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("NaniKutendea308b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
+                    b.Property<bool>("Mwanafamiliaa308b2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mwenza305b1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mwenza308b1")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("NambaMshiriki01")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Naogopakuachwa306a2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Naogopakutengwa306a1")
+                        .HasColumnType("bit");
 
                     b.Property<string>("NdioTaja309b")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<bool>("Nyinginezo306a6")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Nyinginezo310b4")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Rafiki305b1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Rafiki308b1")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Rufaa")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<bool>("Sinaninaemwamini306a6")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Tajawengine305b7")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Tajawengine308b8")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<DateTime>("TareheHudhurio")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TareheHudhurioLijalo")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Ufuatiliaji")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<bool>("Ufuatiliaji310b3")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UmejiungaVVU309a")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("pmtctDataNambaMshiriki01")
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("Ushauri310b1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Wazazi305b3")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Wazazi308b3")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Wengine305b6")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Wengine308b7")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("kunyanyapaliwa306a2")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("pmtctDataID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("pmtctDataNambaMshiriki01");
+                    b.HasIndex("pmtctDataID");
 
                     b.ToTable("PmtctFollowUp");
                 });
@@ -567,18 +631,11 @@ namespace Pmtct.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Pmtct.Models.PmtctCareCascade", b =>
-                {
-                    b.HasOne("Pmtct.Models.PmtctData", "pmtctData")
-                        .WithMany("careCascades")
-                        .HasForeignKey("pmtctDataNambaMshiriki01");
-                });
-
             modelBuilder.Entity("Pmtct.Models.PmtctFollowUp", b =>
                 {
                     b.HasOne("Pmtct.Models.PmtctData", "pmtctData")
                         .WithMany("followup")
-                        .HasForeignKey("pmtctDataNambaMshiriki01");
+                        .HasForeignKey("pmtctDataID");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,7 +9,7 @@ namespace Pmtct.Models
 {
     public class RoleEdit
     {
-        public IdentityRole Role { get; set; }
+        public IdentityRole RoleName { get; set; }
         public IEnumerable<ApplicationUser> MemberToRole { get; set; }
         public IEnumerable<ApplicationUser> NotMembersToRole { get; set; }
     }

@@ -18,7 +18,7 @@ namespace Pmtct.Controllers
 {
     [Route("api/PmtctExcel")]
     [ApiController]
-    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
+    [Authorize(Roles = "admin,analyst,dataentry")]
     public class PmtctExportController : ControllerBase
     {
         private readonly PmtctContext _context;
@@ -32,37 +32,6 @@ namespace Pmtct.Controllers
             _roleManager = roleManager;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> CSV()
-
-        {
-            bool isSuperUser = User.IsInRole("admin") || User.IsInRole("analyst");
-            List<Pmtct.Models.PmtctData> pmtctDatas = new List<PmtctData>();
-            var builder = new StringBuilder();
-           
-            if (isSuperUser)
-            {
-                pmtctDatas = await _context.Pmt.ToListAsync();
-                builder.AppendLine("UserId,NambaMshiriki01,Wilaya02,TareheMahojiano03,Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101,WilayaUnayoishi107,IdadiMimba106,HaliNdoa103,KipatoMwezi104,Kazi105,NjeZanzibar108,KilomitaKituo201,KilomitaUjazo202,HudumaUjauzito203,UgumuKliniki204a,HudumaHapa205,BasiMbaliAfya204b_1,UgumuUsafiriUmma204b_2,KukosaNauli204b_3,MsafaraMrefu204b_4,AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7,TajaMengine204b,UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a,LiniDawaVVU304b,CTC304c");
-                foreach (var item in pmtctDatas)
-                {
-                    builder.AppendLine($"{item.UserId},{item.NambaMshiriki01},{item.Wilaya02},{item.TareheMahojiano03},{item.Kituo04},{item.JinaAnayehoji05},{item.Ngazikituo06},{item.MdaKuishiZanzibar109},{item.KiwangoElimu102},{item.Umri101},{item.WilayaUnayoishi107},{item.IdadiMimba106},{item.HaliNdoa103},{item.KipatoMwezi104},{item.Kazi105},{item.NjeZanzibar108},{item.KilomitaKituo201},{item.KilomitaUjazo202},{item.UgumuKliniki204a},{item.HudumaHapa205},{item.BasiMbaliAfya204b_1},{item.UgumuUsafiriUmma204b_2},{item.KukosaNauli204b_3},{item.MsafaraMrefu204b_4},{item.AnaishiMbaliBasi204b_5},{item.AnaishiMbaliAfya204b_6},{item.Mengine204b_7},{item.TajaMengine204b},{item.UmepataHapaHuduma206},{item.UmriMimba301},{item.MwakaVVU302},{item.MdaVVU303},{item.DawaVVU304a},{item.LiniDawaVVU304b},{item.CTC304c}");
-                }
-                return File(Encoding.UTF8.GetBytes(builder.ToString()), "text/csv", "Pmtct.csv");
-            }
-
-            else
-
-            pmtctDatas= await _context.Pmt.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync();
-            
-            builder.AppendLine("UserId,NambaMshiriki01,Wilaya02,TareheMahojiano03,Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101,WilayaUnayoishi107,IdadiMimba106,HaliNdoa103,KipatoMwezi104,Kazi105,NjeZanzibar108,KilomitaKituo201,KilomitaUjazo202,HudumaUjauzito203,UgumuKliniki204a,HudumaHapa205,BasiMbaliAfya204b_1,UgumuUsafiriUmma204b_2,KukosaNauli204b_3,MsafaraMrefu204b_4,AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7,TajaMengine204b,UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a,LiniDawaVVU304b,CTC304c");
-            foreach (var item in pmtctDatas)
-            {
-                builder.AppendLine($"{item.UserId},{item.NambaMshiriki01},{item.Wilaya02},{item.TareheMahojiano03},{item.Kituo04},{item.JinaAnayehoji05},{item.Ngazikituo06},{item.MdaKuishiZanzibar109},{item.KiwangoElimu102},{item.Umri101},{item.WilayaUnayoishi107},{item.IdadiMimba106},{item.HaliNdoa103},{item.KipatoMwezi104},{item.Kazi105},{item.NjeZanzibar108},{item.KilomitaKituo201},{item.KilomitaUjazo202},{item.UgumuKliniki204a},{item.HudumaHapa205},{item.BasiMbaliAfya204b_1},{item.UgumuUsafiriUmma204b_2},{item.KukosaNauli204b_3},{item.MsafaraMrefu204b_4},{item.AnaishiMbaliBasi204b_5},{item.AnaishiMbaliAfya204b_6},{item.Mengine204b_7},{item.TajaMengine204b},{item.UmepataHapaHuduma206},{item.UmriMimba301},{item.MwakaVVU302},{item.MdaVVU303},{item.DawaVVU304a},{item.LiniDawaVVU304b},{item.CTC304c}");
-            }
-            return File(Encoding.UTF8.GetBytes(builder.ToString()), "text/csv", "Pmtct.csv");
-
-            }
 
 
         [HttpGet]
@@ -80,75 +49,104 @@ namespace Pmtct.Controllers
                 {
                     var worksheet = workbook.Worksheets.Add("pmtctDatas");
                     var currentRow = 1;
-                    worksheet.Cell(currentRow, 1).Value = "UserId";
-                    worksheet.Cell(currentRow, 2).Value = "NambaMshiriki01";
-                    worksheet.Cell(currentRow, 3).Value = "Wilaya02";
-                    worksheet.Cell(currentRow, 4).Value = "TareheMahojiano03";
-                    worksheet.Cell(currentRow, 5).Value = "Kituo04";
-                    worksheet.Cell(currentRow, 6).Value = "JinaAnayehoji05";
-                    worksheet.Cell(currentRow, 7).Value = "Ngazikituo06";
-                    worksheet.Cell(currentRow, 8).Value = "MdaKuishiZanzibar109";
-                    worksheet.Cell(currentRow, 9).Value = "KiwangoElimu102";
-                    worksheet.Cell(currentRow, 11).Value = "Umri101";
-                    worksheet.Cell(currentRow, 12).Value = "IdadiMimba106";
-                    worksheet.Cell(currentRow, 13).Value = "HaliNdoa103";
-                    worksheet.Cell(currentRow, 14).Value = "KipatoMwezi104";
-                    worksheet.Cell(currentRow, 15).Value = "Kazi105";
-                    worksheet.Cell(currentRow, 16).Value = "KilomitaUjazo202";
-                    worksheet.Cell(currentRow, 17).Value = "KilomitaKituo201";
-                    worksheet.Cell(currentRow, 18).Value = "UgumuKliniki204a";
-                    worksheet.Cell(currentRow, 19).Value = "HudumaHapa205";
-                    worksheet.Cell(currentRow, 20).Value = "BasiMbaliAfya204b_1";
-                    worksheet.Cell(currentRow, 21).Value = "UgumuUsafiriUmma204b_2";
-                    worksheet.Cell(currentRow, 22).Value = "MsafaraMrefu204b_4";
-                    worksheet.Cell(currentRow, 23).Value = "AnaishiMbaliBasi204b_5";
-                    worksheet.Cell(currentRow, 24).Value = "AnaishiMbaliAfya204b_6";
-                    worksheet.Cell(currentRow, 25).Value = "Mengine204b_7";
-                    worksheet.Cell(currentRow, 26).Value = "TajaMengine204b";
-                    worksheet.Cell(currentRow, 27).Value = "UmepataHapaHuduma206";
-                    worksheet.Cell(currentRow, 28).Value = "UmriMimba301";
-                    worksheet.Cell(currentRow, 29).Value = "MwakaVVU302";
-                    worksheet.Cell(currentRow, 30).Value = "MdaVVU303";
-                    worksheet.Cell(currentRow, 31).Value = "DawaVVU304a";
-                    worksheet.Cell(currentRow, 32).Value = "LiniDawaVVU304b";
-                    worksheet.Cell(currentRow, 33).Value = "CTC304c";
 
+
+                    worksheet.Cell(currentRow, 1).Value = "ID";
+                     worksheet.Cell(currentRow,2).Value = "InitiatedART401";
+                    worksheet.Cell(currentRow, 3).Value = "InitiatedARTDate401";
+                    worksheet.Cell(currentRow, 4).Value = "DeliveryFacility402";
+                    worksheet.Cell(currentRow, 5).Value = "DeliveryFacilityDate402";
+                    worksheet.Cell(currentRow, 6).Value = "EarlyBirth403a";
+                    worksheet.Cell(currentRow, 7).Value = "EarlyBirthDate403a";
+                    worksheet.Cell(currentRow, 8).Value = "InfantHIVstatus403b";
+                    worksheet.Cell(currentRow, 9).Value = "InfantHIVstatusDate403b";
+                    worksheet.Cell(currentRow, 10).Value = "MotherResults403c";
+                    worksheet.Cell(currentRow, 11).Value = "MotherResultsDate403c";
+                    worksheet.Cell(currentRow, 12).Value = "InfantBreastfeeding404a";
+                    worksheet.Cell(currentRow, 13).Value = "InfantBreastfeedingDate404a";
+                    worksheet.Cell(currentRow, 14).Value = "RemarksName";
+                    worksheet.Cell(currentRow, 15).Value = "NambaMshiriki01";
+                    worksheet.Cell(currentRow, 16).Value = "Wilaya02";
+                    worksheet.Cell(currentRow, 17).Value = "TareheMahojiano03";
+                    worksheet.Cell(currentRow, 18).Value = "Kituo04";
+                    worksheet.Cell(currentRow, 19).Value = "JinaAnayehoji05";
+                    worksheet.Cell(currentRow, 20).Value = "Ngazikituo06";
+                    worksheet.Cell(currentRow, 21).Value = "MdaKuishiZanzibar109";
+                    worksheet.Cell(currentRow, 22).Value = "KiwangoElimu102";
+                    worksheet.Cell(currentRow, 23).Value = "Umri101";
+                    worksheet.Cell(currentRow, 24).Value = "IdadiMimba106";
+                    worksheet.Cell(currentRow, 25).Value = "HaliNdoa103";
+                    worksheet.Cell(currentRow, 26).Value = "KipatoMwezi104";
+                    worksheet.Cell(currentRow, 27).Value = "Kazi105";
+                    worksheet.Cell(currentRow, 28).Value = "KilomitaUjazo202";
+                    worksheet.Cell(currentRow, 29).Value = "KilomitaKituo201";
+                    worksheet.Cell(currentRow, 30).Value = "UgumuKliniki204a";
+                    worksheet.Cell(currentRow, 31).Value = "HudumaHapa205";
+                    worksheet.Cell(currentRow, 32).Value = "BasiMbaliAfya204b_1";
+                    worksheet.Cell(currentRow, 33).Value = "UgumuUsafiriUmma204b_2";
+                    worksheet.Cell(currentRow, 34).Value = "MsafaraMrefu204b_4";
+                    worksheet.Cell(currentRow, 35).Value = "AnaishiMbaliBasi204b_5";
+                    worksheet.Cell(currentRow, 36).Value = "AnaishiMbaliAfya204b_6";
+                    worksheet.Cell(currentRow, 37).Value = "Mengine204b_7";
+                    worksheet.Cell(currentRow, 38).Value = "TajaMengine204b";
+                    worksheet.Cell(currentRow, 39).Value = "UmepataHapaHuduma206";
+                    worksheet.Cell(currentRow, 40).Value = "UmriMimba301";
+                    worksheet.Cell(currentRow, 41).Value = "MwakaVVU302";
+                    worksheet.Cell(currentRow, 42).Value = "MdaVVU303";
+                    worksheet.Cell(currentRow, 43).Value = "DawaVVU304a";
+                    worksheet.Cell(currentRow, 44).Value = "LiniDawaVVU304b";
+                    worksheet.Cell(currentRow, 45).Value = "CTC304c";
+                    worksheet.Cell(currentRow, 46).Value = "UserId";
 
                     foreach (var item in pmtctDatas)
                     {
                         currentRow++;
-                        worksheet.Cell(currentRow, 1).Value = item.UserId;
-                        worksheet.Cell(currentRow, 2).Value = item.NambaMshiriki01;
-                        worksheet.Cell(currentRow, 3).Value = item.Wilaya02;
-                        worksheet.Cell(currentRow, 4).Value = item.TareheMahojiano03;
-                        worksheet.Cell(currentRow, 5).Value = item.Kituo04;
-                        worksheet.Cell(currentRow, 6).Value = item.JinaAnayehoji05;
-                        worksheet.Cell(currentRow, 7).Value = item.Ngazikituo06;
-                        worksheet.Cell(currentRow, 8).Value = item.MdaKuishiZanzibar109;
-                        worksheet.Cell(currentRow, 9).Value = item.KiwangoElimu102;
-                        worksheet.Cell(currentRow, 10).Value = item.Umri101;
-                        worksheet.Cell(currentRow, 11).Value = item.IdadiMimba106;
-                        worksheet.Cell(currentRow, 12).Value = item.HaliNdoa103;
-                        worksheet.Cell(currentRow, 13).Value = item.KipatoMwezi104;
-                        worksheet.Cell(currentRow, 14).Value = item.Kazi105;
-                        worksheet.Cell(currentRow, 15).Value = item.KilomitaUjazo202;
-                        worksheet.Cell(currentRow, 16).Value = item.KilomitaKituo201;
-                        worksheet.Cell(currentRow, 17).Value = item.UgumuKliniki204a;
-                        worksheet.Cell(currentRow, 18).Value = item.HudumaHapa205;
-                        worksheet.Cell(currentRow, 19).Value = item.BasiMbaliAfya204b_1;
-                        worksheet.Cell(currentRow, 20).Value = item.UgumuUsafiriUmma204b_2;
-                        worksheet.Cell(currentRow, 21).Value = item.MsafaraMrefu204b_4;
-                        worksheet.Cell(currentRow, 22).Value = item.AnaishiMbaliBasi204b_5;
-                        worksheet.Cell(currentRow, 23).Value = item.AnaishiMbaliAfya204b_6;
-                        worksheet.Cell(currentRow, 24).Value = item.Mengine204b_7;
-                        worksheet.Cell(currentRow, 25).Value = item.TajaMengine204b;
-                        worksheet.Cell(currentRow, 26).Value = item.UmepataHapaHuduma206;
-                        worksheet.Cell(currentRow, 27).Value = item.UmriMimba301;
-                        worksheet.Cell(currentRow, 28).Value = item.MwakaVVU302;
-                        worksheet.Cell(currentRow, 29).Value = item.MdaVVU303;
-                        worksheet.Cell(currentRow, 30).Value = item.DawaVVU304a;
-                        worksheet.Cell(currentRow, 31).Value = item.LiniDawaVVU304b;
-                        worksheet.Cell(currentRow, 32).Value = item.CTC304c;
+                        worksheet.Cell(currentRow, 1).Value = item.ID;
+                        worksheet.Cell(currentRow, 2).Value = item.InitiatedART401;
+                        worksheet.Cell(currentRow, 3).Value = item.InitiatedARTDate401;
+                        worksheet.Cell(currentRow, 4).Value = item.DeliveryFacility402;
+                        worksheet.Cell(currentRow, 5).Value = item.DeliveryFacilityDate402;
+                        worksheet.Cell(currentRow, 6).Value = item.EarlyBirth403a;
+                        worksheet.Cell(currentRow, 7).Value = item.EarlyBirthDate403a;
+                        worksheet.Cell(currentRow, 8).Value = item.InfantHIVstatus403b;
+                        worksheet.Cell(currentRow, 9).Value = item.InfantHIVstatusDate403b;
+                        worksheet.Cell(currentRow, 10).Value = item.MotherResults403c;
+                        worksheet.Cell(currentRow, 11).Value = item.MotherResultsDate403c;
+                        worksheet.Cell(currentRow, 12).Value = item.InfantBreastfeeding404a;
+                        worksheet.Cell(currentRow, 13).Value = item.InfantBreastfeedingDate404a;
+                        worksheet.Cell(currentRow, 14).Value = item.RemarksName;
+                        worksheet.Cell(currentRow, 15).Value = item.NambaMshiriki01;
+                        worksheet.Cell(currentRow, 16).Value = item.Wilaya02;
+                        worksheet.Cell(currentRow, 17).Value = item.TareheMahojiano03;
+                        worksheet.Cell(currentRow, 18).Value = item.Kituo04;
+                        worksheet.Cell(currentRow, 19).Value = item.JinaAnayehoji05;
+                        worksheet.Cell(currentRow, 20).Value = item.Ngazikituo06;
+                        worksheet.Cell(currentRow, 21).Value = item.MdaKuishiZanzibar109;
+                        worksheet.Cell(currentRow, 22).Value = item.KiwangoElimu102;
+                        worksheet.Cell(currentRow, 23).Value = item.Umri101;
+                        worksheet.Cell(currentRow, 24).Value = item.IdadiMimba106;
+                        worksheet.Cell(currentRow, 25).Value = item.HaliNdoa103;
+                        worksheet.Cell(currentRow, 26).Value = item.KipatoMwezi104;
+                        worksheet.Cell(currentRow, 27).Value = item.Kazi105;
+                        worksheet.Cell(currentRow, 28).Value = item.KilomitaUjazo202;
+                        worksheet.Cell(currentRow, 29).Value = item.KilomitaKituo201;
+                        worksheet.Cell(currentRow, 30).Value = item.UgumuKliniki204a;
+                        worksheet.Cell(currentRow, 31).Value = item.HudumaHapa205;
+                        worksheet.Cell(currentRow, 32).Value = item.BasiMbaliAfya204b_1;
+                        worksheet.Cell(currentRow, 33).Value = item.UgumuUsafiriUmma204b_2;
+                        worksheet.Cell(currentRow, 34).Value = item.MsafaraMrefu204b_4;
+                        worksheet.Cell(currentRow, 35).Value = item.AnaishiMbaliBasi204b_5;
+                        worksheet.Cell(currentRow, 36).Value = item.AnaishiMbaliAfya204b_6;
+                        worksheet.Cell(currentRow, 37).Value = item.Mengine204b_7;
+                        worksheet.Cell(currentRow, 38).Value = item.TajaMengine204b;
+                        worksheet.Cell(currentRow, 39).Value = item.UmepataHapaHuduma206;
+                        worksheet.Cell(currentRow, 40).Value = item.UmriMimba301;
+                        worksheet.Cell(currentRow, 41).Value = item.MwakaVVU302;
+                        worksheet.Cell(currentRow, 42).Value = item.MdaVVU303;
+                        worksheet.Cell(currentRow, 43).Value = item.DawaVVU304a;
+                        worksheet.Cell(currentRow, 44).Value = item.LiniDawaVVU304b;
+                        worksheet.Cell(currentRow, 45).Value = item.CTC304c;
+                        worksheet.Cell(currentRow, 46).Value = item.UserId;
                     }
                     using (var stream = new MemoryStream())
                     {
@@ -202,6 +200,7 @@ namespace Pmtct.Controllers
                     worksheet.Cell(currentRow, 31).Value = "DawaVVU304a";
                     worksheet.Cell(currentRow, 32).Value = "LiniDawaVVU304b";
                     worksheet.Cell(currentRow, 33).Value = "CTC304c";
+                    worksheet.Cell(currentRow, 34).Value = "ID";
 
 
                     foreach (var item in pmtctDatas)
@@ -239,6 +238,7 @@ namespace Pmtct.Controllers
                         worksheet.Cell(currentRow, 30).Value = item.DawaVVU304a;
                         worksheet.Cell(currentRow, 31).Value = item.LiniDawaVVU304b;
                         worksheet.Cell(currentRow, 32).Value = item.CTC304c;
+                        worksheet.Cell(currentRow, 32).Value = item.ID;
                     }
                     using (var stream = new MemoryStream())
                     {
@@ -251,15 +251,15 @@ namespace Pmtct.Controllers
 
 
             }
-            
+
 
         }
 
 
-            
 
-            
 
-        
+
+
+
     }
 }

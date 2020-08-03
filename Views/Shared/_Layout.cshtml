@@ -25,7 +25,7 @@
                             </li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                @if (User.IsInRole("admin")|| User.IsInRole("analyst"))
+                                @if (User.IsInRole("admin"))
                                 {
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
@@ -48,7 +48,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Pmtct - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Strategic Information Unit-ZIHHTLP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

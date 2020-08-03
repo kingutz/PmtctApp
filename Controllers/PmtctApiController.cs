@@ -18,7 +18,7 @@ namespace Pmtct.Controllers
     //[Route("api/[controller]")]
     [Route("api/Pmtct")]
     [ApiController]
-    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
+    [Authorize(Roles = "admin,analyst,dataentry")]
 
     public class PmtctApiController : ControllerBase
     {

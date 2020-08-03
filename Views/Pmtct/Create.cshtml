@@ -6,62 +6,181 @@
     ViewData["Title"] = "Ingiza taarifa mpya";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    int tabindex = 0;
+@*@{
+        int tabindex = 0;
+       // tabindex = "@(++tabindex)"
 
-}
+    }*@
 
-<h1 class="text-secondary">Pmtct New Record</h1>
+
 
 
 <div class="row">
     <div class="col-md-6  ">
         <div class="row">
-            <div class=" col-md-2 ">
-                <a class="nav-link  btn btn-secondary btn-sm" asp-action="Index">Pmtct</a>
+            <div class=" col-md-4 ">
+                <a class="nav-link  btn btn-success btn-sm" asp-action="Index">Baseline</a>
             </div>
-            <div class="col-md-3">
-                <a class="nav-link  btn btn-primary btn-sm" asp-action="Create" asp-controller="PmtctUp">FollowUp</a>
+            <div class="col-md-4">
+                <a class="nav-link  btn btn-primary btn-sm" asp-action="Create" asp-controller="PmtctUp">Follow-up</a>
             </div>
-            <div class="col-md-2">
-                <a class="nav-link  btn btn-primary btn-sm" asp-action="Create" asp-controller="PmtctCare">Care</a>
-            </div>
+          
         </div>
     </div>
-    
-    @*<div class="col-md-3">
-        
-        <ul class="nav navbar ">
-            <li class="nav-item dropdown">csv</li>
-            <li class="nav-item">excel</li>
-        </ul>
-    </div>*@
-    @*<nav class="nav nav-pills">
-            <a class="nav-link " asp-action="Index">Main</a>
-            <a class="nav-link" asp-action="Create" asp-controller="PmtctUp">Pmtct Follow Up</a>
-            <a class="nav-link" asp-action="Create" asp-controller="PmtctCare">Pmtct Care Cascade</a>
 
-        </nav>*@
+
 </div>
 
 <hr />
+<h6 class="text-secondary">New Record</h6>
+<hr />
+
 <div class="row">
     <form asp-action="Create">
-
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
 
         @Html.Hidden("UserId", (object)ViewBag.UserId)
         <input type="hidden" asp-for="UserId" />
 
         <div class="row text-success">
 
+ 
+            
+            <div class="row">
+              
+            <div class="col-md-6">
+
+           </div>
+
+         
+            <div class="col-md-6 text-info">
+                <div class="row">
+              <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
+                PMTCT CARE CASCADE
+            </div>
+             <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
+                Service
+            </div>
+                </div>
+                <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.InitiatedART401) 
+                        </label>
+                    </div>
+                     <div class="col-md-2" >
+                    <input class="form-check-input" id="init401" asp-for="InitiatedART401" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="InitiatedARTDate401" class="form-control" />
+                        <span asp-validation-for="InitiatedARTDate401" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.DeliveryFacility402) 
+                        </label>
+                    </div>
+                     <div class="col-md-2">
+                    <input class="form-check-input" asp-for="DeliveryFacility402" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="DeliveryFacilityDate402" class="form-control" />
+                        <span asp-validation-for="DeliveryFacilityDate402" class="text-danger"></span>
+
+                    </div>
+                </div>
+             <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.EarlyBirth403a) 
+                        </label>
+                    </div>
+                      <div class="col-md-2">
+                    <input class="form-check-input" asp-for="EarlyBirth403a" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="EarlyBirthDate403a" class="form-control" />
+                        <span asp-validation-for="EarlyBirthDate403a" class="text-danger"></span>
+
+                    </div>
+                </div>
+            <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.InfantHIVstatus403b) 
+                        </label>
+                    </div>
+                    <div class="col-md-2">
+                   <input class="form-check-input" asp-for="InfantHIVstatus403b" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="InfantHIVstatusDate403b" class="form-control" />
+                        <span asp-validation-for="InfantHIVstatusDate403b" class="text-danger"></span>
+
+                    </div>
+                </div>
+            <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.MotherResults403c) 
+                        </label>
+                    </div>
+                    <div class="col-md-2">
+                 <input class="form-check-input" asp-for="MotherResults403c" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="MotherResultsDate403c" class="form-control" />
+                        <span asp-validation-for="MotherResultsDate403c" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin:4px;">
+                    <div class="col-md-5">
+                        <label class="form-check-label">
+                            @Html.DisplayNameFor(model => model.InfantBreastfeeding404a) 
+                        </label>
+                    </div>
+                     <div class="col-md-2">
+               <input class="form-check-input" asp-for="InfantBreastfeeding404a" />
+                     </div>
+                    <div class="col-md-5">
+                        <input asp-for="InfantBreastfeedingDate404a" class="form-control" />
+                        <span asp-validation-for="InfantBreastfeedingDate404a" class="text-danger"></span>
+
+                    </div>
+
+                   
+                   
+                       
+             
+                  <div class="row">
+                     <div class="col-md-6">
+                         <label asp-for="RemarksName" style="padding-left: 60px;padding-top:20px;" class="control-label text-info"></label>
+                         </div>
+                     <div class="col-md-6">
+                        <textarea asp-for="RemarksName"style="margin-left: 75px;" class="form-control "></textarea>
+                        <span asp-validation-for="RemarksName" class="text-danger"></span>
+
+                     </div>
+            </div>
+
+            </div>
+
+           
+              </div>
+
             <div class="col-md-12" style="color:brown;background-color:antiquewhite;margin:10px">
                 TAARIFA ZA KITUO NA MAHOJIANO
             </div>
-
+           
             <div class="col-md-12">
                 <div class="row">
+
                     <div class="col-md-3">
                         <label asp-for="NambaMshiriki01" class="control-label"></label>
                     </div>
@@ -83,25 +202,23 @@
                 <div class="row ">
 
                     <div class="col-md-3">
-
-                        <input asp-for="NambaMshiriki01" tabindex="@(++tabindex)" class="form-control " id="nmshiriki" />
+                        <input asp-for="NambaMshiriki01" class="form-control " id="nmshiriki" />
                         <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
                     </div>
 
                     <div class="col-md-3">
-
-                        <input asp-for="TareheMahojiano03" tabindex="@(++tabindex)" class="form-control" />
+                        <input asp-for="TareheMahojiano03" class="form-control" />
                         <span asp-validation-for="TareheMahojiano03" class="text-danger"></span>
                     </div>
-                    <div class="col-md-3">
 
-                        <input asp-for="JinaAnayehoji05" tabindex="@(++tabindex)" class="form-control" />
+                    <div class="col-md-3">
+                        <input asp-for="JinaAnayehoji05" class="form-control" />
                         <span asp-validation-for="JinaAnayehoji05" class="text-danger"></span>
                     </div>
-                    <div class="col-md-3">
 
-                        <select asp-for="Wilaya02" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Wilaya</option>
+                    <div class="col-md-3">
+                        <select asp-for="Wilaya02" class="form-control">
+                            <option value=""></option>
                             <option>1.Kaskazini A</option>
                             <option>2.Kaskazini B</option>
                             <option>3.Mjini</option>
@@ -134,8 +251,8 @@
 
                     <div class="col-md-3">
 
-                        <select asp-for="Kituo04" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Kituo </option>
+                        <select asp-for="Kituo04" class="form-control">
+                            <option value=""></option>
                             <option>Fuoni PHCU+</option>
                             <option>Chukwani PHCU</option>
                             <option>Kombeni PHCU</option>
@@ -197,9 +314,8 @@
                     </div>
 
                     <div class="col-md-3">
-
-                        <select asp-for="Ngazikituo06" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Ngazi ya Kituo</option>
+                        <select asp-for="Ngazikituo06" class="form-control">
+                            <option value=""></option>
                             <option>1.Referral Hospital</option>
                             <option>2.Regional Hospital</option>
                             <option>3.District Hospital</option>
@@ -230,7 +346,6 @@
                         <label asp-for="HaliNdoa103" class="control-label"></label>
                     </div>
                     <div class="col-md-3">
-
                         <label asp-for="KipatoMwezi104" class="control-label"></label>
                     </div>
                 </div>
@@ -239,40 +354,38 @@
                 <div class="row">
                     <div class="col-md-3">
                         @*<input asp-for="Umri101" class="form-control" />*@
-                        <select asp-for="Umri101" tabindex="@(++tabindex)" class="form-control input-group" id="miaka">
+                        <select asp-for="Umri101" class="form-control" id="miaka">
                             <option value="">(Miaka)</option>
                         </select>
                         <span asp-validation-for="Umri101" class="text-danger"></span>
                     </div>
-                    <div class="col-md-3">
 
-                        <select asp-for="KiwangoElimu102"tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Kiwango cha Elimu</option>
+                    <div class="col-md-3">
+                        <select asp-for="KiwangoElimu102" class="form-control">
+                            <option value=""></option>
                             <option>1.Madrasa</option>
-                            <option>2.No formal Education</option>
-                            <option>3.Primary</option>
-                            <option>4.Incomplete Secondary</option>
-                            <option>5.Complete Secondary</option>
-                            <option>6. Higher education</option>
-                            <option>7. No education</option>
+                            <option>2.Elimu ya msingi</option>
+                            <option>3.Hujamaliza elimu ya sekondari</option>
+                            <option>4.Kamaliza elimu ya sekondari</option>
+                            <option>5. Elimu ya juu</option>
+                            <option>6. Hajasoma</option>
                         </select>
                         <span asp-validation-for="KiwangoElimu102" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
-
-                        <select asp-for="HaliNdoa103" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Hali ya Ndoa</option>
-                            <option>1.Married</option>
-                            <option>2.Cohabiting</option>
-                            <option>3.Single</option>
-                            <option>4.Divorced/Separated</option>
-                            <option>5.Widowed</option>
+                        <select asp-for="HaliNdoa103" class="form-control">
+                            <option value=""></option>
+                            <option>1.Nimeolewa</option>
+                            <option>2.Tunaishi bila ndoa</option>
+                            <option>3.Sijawahi kuolewa</option>
+                            <option>4.Nimeachika/Tumetengana</option>
+                            <option>5.Mjane</option>
                         </select>
                         <span asp-validation-for="HaliNdoa103" class="text-danger"></span>
                     </div>
-                    <div class="col-md-3">
 
-                        <input asp-for="KipatoMwezi104" tabindex="@(++tabindex)" id="kipato" class="form-control" />
+                    <div class="col-md-3">
+                        <input asp-for="KipatoMwezi104" id="kipato" class="form-control" />
                         <span asp-validation-for="KipatoMwezi104" class="text-danger"></span>
                     </div>
                 </div>
@@ -290,9 +403,9 @@
                         <label asp-for="WilayaUnayoishi107" class="control-label"></label>
                     </div>
                     <div class="col-md-3">
-
-                        <label asp-for="NjeZanzibar108" class="control-label"></label>
+                        <label asp-for="MdaKuishiZanzibar109" id="mdakuishi" class="control-label"></label>
                     </div>
+                    
                 </div>
             </div>
 
@@ -301,13 +414,12 @@
                 <div class="row">
 
                     <div class="col-md-3">
-
-                        <select asp-for="Kazi105"tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Kazi</option>
-                            <option>1.Formal</option>
-                            <option>2.Informal</option>
-                            <option>3.Unemployed</option>
-                            <option>4.Student</option>
+                        <select asp-for="Kazi105" class="form-control">
+                            <option value=""></option>
+                            <option>1.Nimeajiriwa</option>
+                            <option>2.Nimejiajiri</option>
+                            <option>3.Sina ajira</option>
+                            <option>4.Mwanafunzi</option>
 
                         </select>
                         <span asp-validation-for="Kazi105" class="text-danger"></span>
@@ -315,19 +427,17 @@
 
 
                     <div class="col-md-3">
-
-                        <select asp-for="IdadiMimba106" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Idadi ya Mimba</option>
-                            <option>0. Primigravida</option>
-                            <option>1. Multigravidity</option>
+                        <select asp-for="IdadiMimba106" class="form-control">
+                            <option value=""></option>
+                            <option>0. Mimba ya kwanza</option>
+                            <option>1. Mimba zaidi ya moja</option>
                         </select>
                         <span asp-validation-for="IdadiMimba106" class="text-danger"></span>
                     </div>
 
                     <div class="col-md-3">
-
-                        <select asp-for="WilayaUnayoishi107" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Wilaya Unayoishi</option>
+                        <select asp-for="WilayaUnayoishi107" class="form-control">
+                            <option value=""></option>
                             <option>1.Kaskazini A</option>
                             <option>2.Kaskazini B</option>
                             <option>3.Mjini</option>
@@ -342,37 +452,35 @@
                         </select>
                         <span asp-validation-for="WilayaUnayoishi107" class="text-danger"></span>
                     </div>
-
                     <div class="col-md-3">
-
-                        <input asp-for="NjeZanzibar108" tabindex="@(++tabindex)" class="form-control" />
-                        <span asp-validation-for="NjeZanzibar108" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label asp-for="MdaKuishiZanzibar109" class="control-label"></label>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-3">
-
-                        <select asp-for="MdaKuishiZanzibar109" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Mda ulioishi Zanzibar</option>
-                            <option>1. Within One Year</option>
-                            <option>2. 1 to 5 Years</option>
-                            <option>3. More than 5 Years</option>
-                            <option>4. All Time</option>
-
+                        <select asp-for="MdaKuishiZanzibar109" id="mdakuishi" class="form-control">
+                            <option value=""></option>
+                            <option>1. Ndani ya mwaka mmoja</option>
+                            <option>2. Mwaka 1 hadi miaka mitano</option>
+                            <option>3. Zaidi ya miaka mitano</option>
+                            <option>4. Maisha yote</option>
                         </select>
                         <span asp-validation-for="MdaKuishiZanzibar109" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+            <div class="col-md-12 collapse" id="njezanzila">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <label asp-for="NjeZanzibar108"  class="control-label text-primary"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12 collapse" id="njezanziIn">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input asp-for="NjeZanzibar108" class="form-control" />
+                        <span asp-validation-for="NjeZanzibar108" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -408,40 +516,39 @@
                 <div class="row">
                     <div class="col-md-3">
 
-                        <select asp-for="KilomitaKituo201"tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Umbali wa Kituo</option>
-                            <option>1.Within 5 km</option>
-                            <option>2.More than 5 km</option>
+                        <select asp-for="KilomitaKituo201" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndani ya kilometa 5</option>
+                            <option>2.Zaidi ya kilometa 5</option>
                         </select>
                         <span asp-validation-for="KilomitaKituo201" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
 
-                        <select asp-for="KilomitaUjazo202" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Umbali wa Ujazo</option>
-                            <option>1.Within 5 km</option>
-                            <option>2.More than 5 km</option>
+                        <select asp-for="KilomitaUjazo202" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndani ya kilometa 5</option>
+                            <option>2.Zaidi ya kilometa 5</option>
                         </select>
                         <span asp-validation-for="KilomitaUjazo202" class="text-danger"></span>
                     </div>
 
                     <div class="col-md-3">
 
-                        <select asp-for="HudumaUjauzito203" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Njia ya Usafiri</option>
-                            <option>1.On foot</option>
-                            <option>2.Public transport</option>
-                            <option>3.Private transport</option>
+                        <select asp-for="HudumaUjauzito203" class="form-control">
+                            <option value=""></option>
+                            <option>1.Kwa miguu</option>
+                            <option>2.Usafiri wa umma</option>
+                            <option>3.Usafiri Binafsi</option>
                         </select>
                         <span asp-validation-for="HudumaUjauzito203" class="text-danger"></span>
                     </div>
 
                     <div class="col-md-3">
-
-                        <select asp-for="UgumuKliniki204a" tabindex="@(++tabindex)" id="select-id" class="form-control">
-                            <option value="">Ugumu kufika Kliniki</option>
-                            <option>1.Yes</option>
-                            <option>0.No</option>
+                        <select asp-for="UgumuKliniki204a" id="select-id" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndiyo</option>
+                            <option>0.Hapana</option>
                         </select>
                         <span asp-validation-for="UgumuKliniki204a" class="text-danger"></span>
                     </div>
@@ -450,7 +557,7 @@
 
 
 
-            <div class="col-md-12 invisible collapse" id="kamandio" style="color:blue">
+            <div class="col-md-12 invisible collapse text-primary" id="kamandio">
                 <div class="row" style="padding-top:20px;">
                     <div class="col-md-3">
                         <label class="control-label">204b. Kama ndio, ni upi?</label>
@@ -458,82 +565,90 @@
                 </div>
             </div>
 
-            <div class="col-md-12 collapse" id="usafiri" style="color:blue">
+            <div class="col-md-12 collapse text-primary" id="usafiri">
 
-                <div class="row" style="margin-left:40px;padding-bottom:7px;">
+
+                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input" tabindex="@(++tabindex)" asp-for="BasiMbaliAfya204b_1" /> @Html.DisplayNameFor(model => model.BasiMbaliAfya204b_1)
+                        <input class="form-check-input" asp-for="BasiMbaliAfya204b_1" /> @Html.DisplayNameFor(model => model.BasiMbaliAfya204b_1)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input" tabindex="@(++tabindex)" asp-for="UgumuUsafiriUmma204b_2" /> @Html.DisplayNameFor(model => model.UgumuUsafiriUmma204b_2)
+                        <input class="form-check-input" asp-for="UgumuUsafiriUmma204b_2" /> @Html.DisplayNameFor(model => model.UgumuUsafiriUmma204b_2)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input"tabindex="@(++tabindex)" asp-for="KukosaNauli204b_3" /> @Html.DisplayNameFor(model => model.KukosaNauli204b_3)
+                        <input class="form-check-input" asp-for="KukosaNauli204b_3" /> @Html.DisplayNameFor(model => model.KukosaNauli204b_3)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input"tabindex="@(++tabindex)" asp-for="MsafaraMrefu204b_4" /> @Html.DisplayNameFor(model => model.MsafaraMrefu204b_4)
+                        <input class="form-check-input" asp-for="MsafaraMrefu204b_4" /> @Html.DisplayNameFor(model => model.MsafaraMrefu204b_4)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input"tabindex="@(++tabindex)" asp-for="AnaishiMbaliBasi204b_5" /> @Html.DisplayNameFor(model => model.AnaishiMbaliBasi204b_5)
+                        <input class="form-check-input" asp-for="AnaishiMbaliBasi204b_5" /> @Html.DisplayNameFor(model => model.AnaishiMbaliBasi204b_5)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input"tabindex="@(++tabindex)" asp-for="AnaishiMbaliAfya204b_6" /> @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
+                        <input class="form-check-input" asp-for="AnaishiMbaliAfya204b_6" /> @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
                     </label>
                 </div>
                 <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
                     <label class="form-check-label row">
-                        <input class="form-check-input" tabindex="@(++tabindex)" asp-for="AnaishiMbaliAfya204b_6" /> @Html.DisplayNameFor(model => model.AnaishiMbaliAfya204b_6)
-                    </label>
-                </div>
-                <div class="row" style=" margin-left: 40px;padding-bottom:7px; padding-bottom: 7px;">
-                    <label class="form-check-label row">
-                        <input class="form-check-input" id="mengine" tabindex="@(++tabindex)" asp-for="Mengine204b_7" /> @Html.DisplayNameFor(model => model.Mengine204b_7)
+                        <input class="form-check-input" id="mengine" asp-for="Mengine204b_7" /> @Html.DisplayNameFor(model => model.Mengine204b_7)
                     </label>
                 </div>
 
             </div>
             <div class="col-md-12 invisible collapse" id="taja">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-primary">
                         <label asp-for="TajaMengine204b" class="control-label"></label>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-3">
-                        <input asp-for="TajaMengine204b" tabindex="@(++tabindex)" class="form-control" />
+                        <input asp-for="TajaMengine204b" class="form-control" />
                         <span asp-validation-for="TajaMengine204b" class="text-danger"></span>
-
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="HudumaHapa205" class="control-label"></label>
+                    </div>
                     <div class="col-md-3">
                         <label asp-for="UmepataHapaHuduma206" class="control-label"></label>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-3">
+                        <select asp-for="HudumaHapa205" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndiyo</option>
+                            <option>0.Hapana</option>
+                        </select>
+                        <span asp-validation-for="HudumaHapa205" class="text-danger"></span>
 
-                        <select asp-for="UmepataHapaHuduma206" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Kupata Huduma Hapa</option>
-                            <option>1.Yes</option>
-                            <option>0.No</option>
+
+                    </div>
+                    <div class="col-md-3">
+                        <select asp-for="UmepataHapaHuduma206" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndiyo</option>
+                            <option>0.Hapana</option>
                         </select>
                         <span asp-validation-for="UmepataHapaHuduma206" class="text-danger"></span>
 
@@ -542,13 +657,6 @@
                 </div>
 
             </div>
-
-
-
-
-
-
-
 
             <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
                 TAARIFA ZA AFYA NA UPIMAJI WA VVU
@@ -576,7 +684,7 @@
                     <div class="col-md-3">
 
                         @*<input asp-for="UmriMimba301" class="form-control" />*@
-                        <select asp-for="UmriMimba301" tabindex="@(++tabindex)" class="form-control input-group" id="Umrimimba">
+                        <select asp-for="UmriMimba301" class="form-control input-group" id="Umrimimba">
                             <option value="">Umri wa mimba</option>
                         </select>
                         <span asp-validation-for="UmriMimba301" class="text-danger"></span>
@@ -584,52 +692,51 @@
                     <div class="col-md-3">
 
                         @*<input asp-for="MwakaVVU302" class="form-control" />*@
-                        <select asp-for="MwakaVVU302" tabindex="@(++tabindex)" class="form-control input-group date" id="ddlYears">
-                            <option value="">Mwaka Uliogundulika</option>
+                        <select asp-for="MwakaVVU302" class="form-control input-group date" id="ddlYears">
+                            <option value=""></option>
 
                         </select>
                         <span asp-validation-for="MwakaVVU302" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
 
-                        <select asp-for="MdaVVU303" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Mda VVU</option>
-                            <option>1.Prior to this pregnancy</option>
-                            <option>2.During this pregnancy</option>
+                        <select asp-for="MdaVVU303" class="form-control">
+                            <option value=""></option>
+                            <option>1.Kabla ya ujauzito huu</option>
+                            <option>2.Kipindi cha ujauzito huu</option>
 
                         </select>
                         <span asp-validation-for="MdaVVU303" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-
-                        <select asp-for="DawaVVU304a" tabindex="@(++tabindex)" class="form-control">
-                            <option value="">Unatumia Dawa?</option>
-                            <option>1.Yes</option>
-                            <option>0.No</option>
+                    <div class="col-md-3">
+                        <select asp-for="DawaVVU304a" id="dawaVVU" class="form-control">
+                            <option value=""></option>
+                            <option>1.Ndiyo</option>
+                            <option>0.Hapana</option>
                         </select>
                         <span asp-validation-for="DawaVVU304a" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 collapse" id="liniCTCLa">
                 <div class="row">
                     <div class="col-md-3">
-                        <label asp-for="LiniDawaVVU304b" class="control-label"></label>
+                        <label asp-for="LiniDawaVVU304b" class="control-label text-primary "></label>
                     </div>
                     <div class="col-md-3">
-                        <label asp-for="CTC304c" class="control-label"></label>
+                        <label asp-for="CTC304c" class="control-label text-primary"></label>
                     </div>
 
 
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 collapse"  id="liniCTCIn">
                 <div class="row">
                     <div class="col-md-3">
 
                         @*<input asp-for="LiniDawaVVU304b" class="form-control input-group date" />*@
-                        <select asp-for="LiniDawaVVU304b" tabindex="@(++tabindex)" class="form-control input-group date" id="ddlYearsLini">
+                        <select asp-for="LiniDawaVVU304b" class="form-control input-group date" id="ddlYearsLini">
                             <option value="">Mwaka kutumia Dawa</option>
 
                         </select>
@@ -637,26 +744,23 @@
                     </div>
                     <div class="col-md-3">
 
-                        <input asp-for="CTC304c" tabindex="@(++tabindex)" class="form-control" />
+                        <input asp-for="CTC304c" id="ctcno" class="form-control" />
                         <span asp-validation-for="CTC304c" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
 
-            <div class="row" style="padding-top:20px;">
-                <div class="col-md-12">
-                    <div class="row">
-                        <input type="submit" tabindex="@(++tabindex)" value="Create" id="weka" class="btn btn-primary" />
+           
+            <div class="col-md-12" style="margin-top:10px">
+                <div class="row">
+                    <div class="col-md-1">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                    <div class="col-md-1">
+                        <a asp-action="Create" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    <div class="row">
-                        <a asp-action="Index">Rudi kwenye Taarifa</a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </form>
@@ -715,23 +819,23 @@
         };
 
         $(document).on("change", "#select-id", function () {
-            if ($(this).val() == "1.Yes") {
+            if ($(this).val() == "1.Ndiyo") {
                 $("#kamandio").removeClass("invisible");
                 $("#kamandio").removeClass("collapse");
                 $("#usafiri").removeClass("invisible");
                 $("#usafiri").removeClass("collapse");
-                
+
             }
             else {
                 $("#kamandio").addClass("invisible");
                 $("#kamandio").addClass("collapse");
                 $("#usafiri").addClass("invisible");
                 $("#usafiri").addClass("collapse");
-                
+
             }
         });
 
-       
+
         $(document).ready(function () {
             $('#mengine').click(function () {
                 if ($(this).prop("checked") == true) {
@@ -745,21 +849,46 @@
                 }
             });
         });
-        
+
 
         $(document).ready(function () {
-            //$('#nmshiriki').mask('A0-A0-AA00');
-            //$('#kipato').mask("0,000,000,000", { reverse: true });
+            $('#ctcno').mask('00-00-0000-000000');
+            $('#kipato').mask("0,000,000,000", { reverse: true });
 
         });
 
         document.getElementById('nmshiriki').focus();
-       
 
-        $(document).ready(function () {
-            $('#weka').click(function () {
-                $('#nmshiriki').focus();
-            });
+
+        
+       
+        $(document).on("change", "#mdakuishi", function () {
+            if ($(this).val() == "1. Ndani ya mwaka mmoja" || $(this).val() == "2. Mwaka 1 hadi miaka mitano" || $(this).val() == "3. Zaidi ya miaka mitano") {
+               
+                $("#njezanzila").removeClass("collapse");
+                $("#njezanziIn").removeClass("collapse");
+
+            }
+            else {
+                
+                $("#njezanzila").addClass("collapse");
+                $("#njezanziIn").addClass("collapse");
+
+            }
+        });
+
+        $(document).on("change", "#dawaVVU", function () {
+            if ($(this).val() == "1.Ndiyo") {
+
+               $("#liniCTCLa").removeClass("collapse");
+               $("#liniCTCIn").removeClass("collapse");
+
+            }
+            else {
+                 $("#liniCTCLa").addClass("collapse");
+                 $("#liniCTCIn").addClass("collapse");
+
+            }
         });
     </script>
 

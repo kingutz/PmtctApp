@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pmtct.Migrations
 {
-    public partial class TMData : Migration
+    public partial class PMTData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,14 +51,30 @@ namespace Pmtct.Migrations
                 name: "Pmt",
                 columns: table => new
                 {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InitiatedART401 = table.Column<bool>(nullable: false),
+                    InitiatedARTDate401 = table.Column<DateTime>(nullable: true),
+                    DeliveryFacility402 = table.Column<bool>(nullable: false),
+                    DeliveryFacilityDate402 = table.Column<DateTime>(nullable: true),
+                    EarlyBirth403a = table.Column<bool>(nullable: false),
+                    EarlyBirthDate403a = table.Column<DateTime>(nullable: true),
+                    InfantHIVstatus403b = table.Column<bool>(nullable: false),
+                    InfantHIVstatusDate403b = table.Column<DateTime>(nullable: true),
+                    MotherResults403c = table.Column<bool>(nullable: false),
+                    MotherResultsDate403c = table.Column<DateTime>(nullable: true),
+                    InfantBreastfeeding404a = table.Column<bool>(nullable: false),
+                    InfantBreastfeedingDate404a = table.Column<DateTime>(nullable: true),
+                    RemarksName = table.Column<string>(maxLength: 255, nullable: true),
                     NambaMshiriki01 = table.Column<string>(maxLength: 255, nullable: false),
-                    UserId = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     Wilaya02 = table.Column<string>(nullable: false),
                     TareheMahojiano03 = table.Column<DateTime>(nullable: false),
                     Kituo04 = table.Column<string>(maxLength: 255, nullable: false),
                     JinaAnayehoji05 = table.Column<string>(maxLength: 255, nullable: true),
                     Ngazikituo06 = table.Column<string>(maxLength: 255, nullable: false),
                     MdaKuishiZanzibar109 = table.Column<string>(maxLength: 255, nullable: false),
+                    NjeZanzibar108 = table.Column<string>(maxLength: 255, nullable: true),
                     KiwangoElimu102 = table.Column<string>(maxLength: 255, nullable: false),
                     Umri101 = table.Column<double>(nullable: false),
                     WilayaUnayoishi107 = table.Column<string>(maxLength: 255, nullable: false),
@@ -66,7 +82,6 @@ namespace Pmtct.Migrations
                     HaliNdoa103 = table.Column<string>(maxLength: 255, nullable: false),
                     KipatoMwezi104 = table.Column<double>(nullable: true),
                     Kazi105 = table.Column<string>(maxLength: 255, nullable: false),
-                    NjeZanzibar108 = table.Column<string>(maxLength: 255, nullable: false),
                     KilomitaKituo201 = table.Column<string>(maxLength: 255, nullable: false),
                     KilomitaUjazo202 = table.Column<string>(maxLength: 255, nullable: false),
                     HudumaUjauzito203 = table.Column<string>(maxLength: 255, nullable: false),
@@ -85,12 +100,13 @@ namespace Pmtct.Migrations
                     MwakaVVU302 = table.Column<string>(maxLength: 255, nullable: false),
                     MdaVVU303 = table.Column<string>(maxLength: 255, nullable: false),
                     DawaVVU304a = table.Column<string>(maxLength: 255, nullable: false),
-                    LiniDawaVVU304b = table.Column<string>(maxLength: 255, nullable: false),
-                    CTC304c = table.Column<string>(maxLength: 255, nullable: true)
+                    LiniDawaVVU304b = table.Column<string>(maxLength: 255, nullable: true),
+                    CTC304c = table.Column<string>(maxLength: 255, nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pmt", x => x.NambaMshiriki01);
+                    table.PrimaryKey("PK_Pmt", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,7 +114,7 @@ namespace Pmtct.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -119,7 +135,7 @@ namespace Pmtct.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -200,65 +216,60 @@ namespace Pmtct.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PmtctCareCascade",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<string>(nullable: false),
-                    SN = table.Column<string>(maxLength: 255, nullable: false),
-                    ServiceName = table.Column<string>(maxLength: 255, nullable: false),
-                    ResponseName = table.Column<bool>(nullable: false),
-                    ServiceDate = table.Column<DateTime>(nullable: false),
-                    RemarksName = table.Column<string>(maxLength: 255, nullable: true),
-                    NambaMshiriki01 = table.Column<string>(nullable: false),
-                    pmtctDataNambaMshiriki01 = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PmtctCareCascade", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_PmtctCareCascade_Pmt_pmtctDataNambaMshiriki01",
-                        column: x => x.pmtctDataNambaMshiriki01,
-                        principalTable: "Pmt",
-                        principalColumn: "NambaMshiriki01",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PmtctFollowUp",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     TareheHudhurio = table.Column<DateTime>(nullable: false),
                     HaliYako305a = table.Column<string>(maxLength: 255, nullable: false),
-                    KamaHapana305a = table.Column<string>(maxLength: 255, nullable: false),
-                    KamaNdio305b = table.Column<string>(maxLength: 255, nullable: false),
-                    MpangoMtu306b = table.Column<string>(maxLength: 255, nullable: false),
+                    Mwenza305b1 = table.Column<bool>(nullable: false),
+                    Mwanafamiliaa305b2 = table.Column<bool>(nullable: false),
+                    Wazazi305b3 = table.Column<bool>(nullable: false),
+                    Rafiki305b1 = table.Column<bool>(nullable: false),
+                    Mfanyakazi305b5 = table.Column<bool>(nullable: false),
+                    Wengine305b6 = table.Column<bool>(nullable: false),
+                    Tajawengine305b7 = table.Column<string>(maxLength: 255, nullable: true),
+                    Naogopakutengwa306a1 = table.Column<bool>(nullable: false),
+                    Naogopakuachwa306a2 = table.Column<bool>(nullable: false),
+                    kunyanyapaliwa306a2 = table.Column<bool>(nullable: false),
+                    BadosijaaminiVVUliwa306a4 = table.Column<bool>(nullable: false),
+                    Sinaninaemwamini306a6 = table.Column<bool>(nullable: false),
+                    Nyinginezo306a6 = table.Column<bool>(nullable: false),
+                    MpangoMtu306b = table.Column<string>(maxLength: 255, nullable: true),
                     HaliMwenza307 = table.Column<string>(maxLength: 255, nullable: false),
                     KuhudumiwaTofautiVVU308a = table.Column<string>(maxLength: 255, nullable: false),
-                    NaniKutendea308b = table.Column<string>(maxLength: 255, nullable: false),
+                    Mwenza308b1 = table.Column<bool>(nullable: false),
+                    Mwanafamiliaa308b2 = table.Column<bool>(nullable: false),
+                    Wazazi308b3 = table.Column<bool>(nullable: false),
+                    Rafiki308b1 = table.Column<bool>(nullable: false),
+                    Mfanyakazi308b5 = table.Column<bool>(nullable: false),
+                    Mhudumu308b6 = table.Column<bool>(nullable: false),
+                    Wengine308b7 = table.Column<bool>(nullable: false),
+                    Tajawengine308b8 = table.Column<string>(maxLength: 255, nullable: true),
                     UmejiungaVVU309a = table.Column<string>(maxLength: 255, nullable: false),
-                    NdioTaja309b = table.Column<string>(maxLength: 255, nullable: false),
+                    NdioTaja309b = table.Column<string>(maxLength: 255, nullable: true),
                     MamaMwambata310a = table.Column<string>(maxLength: 255, nullable: false),
-                    HudumaHulipatiwa310b = table.Column<string>(maxLength: 255, nullable: false),
+                    Ushauri310b1 = table.Column<bool>(nullable: false),
+                    Elimuafya310b2 = table.Column<bool>(nullable: false),
+                    Ufuatiliaji310b3 = table.Column<bool>(nullable: false),
+                    Nyinginezo310b4 = table.Column<bool>(nullable: false),
                     Rufaa = table.Column<string>(maxLength: 255, nullable: true),
                     TareheHudhurioLijalo = table.Column<DateTime>(nullable: false),
                     Ufuatiliaji = table.Column<string>(maxLength: 255, nullable: false),
                     JinaMtoHuduma = table.Column<string>(maxLength: 255, nullable: true),
-                    NambaMshiriki01 = table.Column<string>(nullable: false),
-                    pmtctDataNambaMshiriki01 = table.Column<string>(nullable: true)
+                    NambaMshiriki01 = table.Column<long>(nullable: false),
+                    pmtctDataID = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PmtctFollowUp", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PmtctFollowUp_Pmt_pmtctDataNambaMshiriki01",
-                        column: x => x.pmtctDataNambaMshiriki01,
+                        name: "FK_PmtctFollowUp_Pmt_pmtctDataID",
+                        column: x => x.pmtctDataID,
                         principalTable: "Pmt",
-                        principalColumn: "NambaMshiriki01",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -271,7 +282,8 @@ namespace Pmtct.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -297,17 +309,13 @@ namespace Pmtct.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PmtctCareCascade_pmtctDataNambaMshiriki01",
-                table: "PmtctCareCascade",
-                column: "pmtctDataNambaMshiriki01");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PmtctFollowUp_pmtctDataNambaMshiriki01",
+                name: "IX_PmtctFollowUp_pmtctDataID",
                 table: "PmtctFollowUp",
-                column: "pmtctDataNambaMshiriki01");
+                column: "pmtctDataID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -326,9 +334,6 @@ namespace Pmtct.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "PmtctCareCascade");
 
             migrationBuilder.DropTable(
                 name: "PmtctFollowUp");

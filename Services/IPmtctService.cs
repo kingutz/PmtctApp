@@ -9,9 +9,9 @@ namespace Pmtct.Services
     public interface IPmtctService
     {
 
-        //bool VerifyEmail(string email);
+       public bool VerifyName(string na);
         //bool VerifyName(DateTime ServiceDate,string ID, string SN, bool ResponseName,string NambaMshiriki01, string ServiceName, string RemarksName);
-        bool VerifyName(string NambaMshiriki01, string ServiceName, int? id);
+        //bool VerifyName(string NambaMshiriki01, string ServiceName, int? id);
         
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pmtct.Models;
+            
 
 namespace Pmtct.Controllers
 {
@@ -17,7 +18,13 @@ namespace Pmtct.Controllers
         {
             _logger = logger;
         }
+        public string Message { get; set; }
 
+        public void OnGet()
+        {
+            Message = $"About page visited at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
+        }
         public IActionResult Index()
         {
             return View();

@@ -1,117 +1,398 @@
 ﻿@model Pmtct.Models.PmtctFollowUp
 
 @{
-    ViewData["Title"] = "Rekebisha taarifa";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1 class="text-info">Rekebisha Taarifa</h1>
-
-@*<h4>PmtctFollowUp</h4>*@
-<a asp-action="Index">Rudi kwenye Taarifa</a>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+    <div class="col-md-6  ">
+        <div class="row">
+            <div class=" col-md-3 ">
+                <a class="nav-link  btn btn-success btn-sm" asp-action="Index">Folow-up</a>
+            </div>
 
-            <div class="form-group">
-                <label asp-for="TareheHudhurio" class="control-label"></label>
-                <input asp-for="TareheHudhurio" class="form-control" />
-                <span asp-validation-for="TareheHudhurio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HaliYako305a" class="control-label"></label>
-                <input asp-for="HaliYako305a" class="form-control" />
-                <span asp-validation-for="HaliYako305a" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KamaHapana305a" class="control-label"></label>
-                <input asp-for="KamaHapana305a" class="form-control" />
-                <span asp-validation-for="KamaHapana305a" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KamaNdio305b" class="control-label"></label>
-                <input asp-for="KamaNdio305b" class="form-control" />
-                <span asp-validation-for="KamaNdio305b" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MpangoMtu306b" class="control-label"></label>
-                <input asp-for="MpangoMtu306b" class="form-control" />
-                <span asp-validation-for="MpangoMtu306b" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HaliMwenza307" class="control-label"></label>
-                <input asp-for="HaliMwenza307" class="form-control" />
-                <span asp-validation-for="HaliMwenza307" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KuhudumiwaTofautiVVU308a" class="control-label"></label>
-                <input asp-for="KuhudumiwaTofautiVVU308a" class="form-control" />
-                <span asp-validation-for="KuhudumiwaTofautiVVU308a" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NaniKutendea308b" class="control-label"></label>
-                <input asp-for="NaniKutendea308b" class="form-control" />
-                <span asp-validation-for="NaniKutendea308b" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UmejiungaVVU309a" class="control-label"></label>
-                <input asp-for="UmejiungaVVU309a" class="form-control" />
-                <span asp-validation-for="UmejiungaVVU309a" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NdioTaja309b" class="control-label"></label>
-                <input asp-for="NdioTaja309b" class="form-control" />
-                <span asp-validation-for="NdioTaja309b" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MamaMwambata310a" class="control-label"></label>
-                <input asp-for="MamaMwambata310a" class="form-control" />
-                <span asp-validation-for="MamaMwambata310a" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HudumaHulipatiwa310b" class="control-label"></label>
-                <input asp-for="HudumaHulipatiwa310b" class="form-control" />
-                <span asp-validation-for="HudumaHulipatiwa310b" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rufaa" class="control-label"></label>
-                <input asp-for="Rufaa" class="form-control" />
-                <span asp-validation-for="Rufaa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TareheHudhurioLijalo" class="control-label"></label>
-                <input asp-for="TareheHudhurioLijalo" class="form-control" />
-                <span asp-validation-for="TareheHudhurioLijalo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ufuatiliaji" class="control-label"></label>
-                <input asp-for="Ufuatiliaji" class="form-control" />
-                <span asp-validation-for="Ufuatiliaji" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="JinaMtoHuduma" class="control-label"></label>
-                <input asp-for="JinaMtoHuduma" class="form-control" />
-                <span asp-validation-for="JinaMtoHuduma" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+        </div>
+    </div>
+</div>
+<hr />
+
+<h6 class="text-secondary">Edit Record</h6>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.Hidden("UserId", (object)ViewBag.UserId)
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="ID" />
+
+    <div class="row text-success">
+
+        <div class="col-md-12 " style="color:brown;background-color:antiquewhite;margin:10px">
+            TAARIFA ZA UPIMAJI
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+
                 <label asp-for="NambaMshiriki01" class="control-label"></label>
+            </div>
+
+
+            <div class="row" style="margin-top:25px;" id="nmshiriki">
+                @*<select asp-for="NambaMshiriki01" id="nmshiriki" class="form-control" asp-items="ViewBag.NambaMshiriki01">
+                        <option value="">--Namba Ya Mshiriki --</option>
+                    </select>*@
                 <input asp-for="NambaMshiriki01" class="form-control" />
                 <span asp-validation-for="NambaMshiriki01" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Tunza" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
 
-<div>
-    <a asp-action="Index">Rudi kwenye Taarifa</a>
-</div>
+                <label asp-for="TareheHudhurio" class="control-label"></label>
+            </div>
+
+
+            <div class="row" style="margin-top:25px;">
+                <input asp-for="TareheHudhurio" class="form-control" />
+                <span asp-validation-for="TareheHudhurio" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+
+                <label asp-for="HaliYako305a" class="control-label"></label>
+
+
+            </div>
+            <div class="row" style="margin-top:25px;">
+                 <input asp-for="HaliYako305a" class="form-control" />
+                <span asp-validation-for="HaliYako305a" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+
+                <label class="control-label text-primary">305b. Kama ndio nani anafahamu?</label>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mwenza305b1" /> @Html.DisplayNameFor(model => model.Mwenza305b1)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mwanafamiliaa305b2" /> @Html.DisplayNameFor(model => model.Mwanafamiliaa305b2)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Wazazi305b3" /> @Html.DisplayNameFor(model => model.Wazazi305b3)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Rafiki305b1" /> @Html.DisplayNameFor(model => model.Rafiki305b1)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mfanyakazi305b5" /> @Html.DisplayNameFor(model => model.Mfanyakazi305b5)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="wengine305b6" asp-for="Wengine305b6" /> @Html.DisplayNameFor(model => model.Wengine305b6)
+                        </label>
+
+                    </div>
+                    <div class="row " style="padding-left:50px;">
+                        <input asp-for="Tajawengine305b7" class="form-control" />
+                        <span asp-validation-for="Tajawengine305b7" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+
+                <label class="control-label text-primary">306a. kama hapana taja sababu</label>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Naogopakutengwa306a1" /> @Html.DisplayNameFor(model => model.Naogopakutengwa306a1)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Naogopakuachwa306a2" /> @Html.DisplayNameFor(model => model.Naogopakuachwa306a2)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="kunyanyapaliwa306a2" /> @Html.DisplayNameFor(model => model.kunyanyapaliwa306a2)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="BadosijaaminiVVUliwa306a4" /> @Html.DisplayNameFor(model => model.BadosijaaminiVVUliwa306a4)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Sinaninaemwamini306a6" /> @Html.DisplayNameFor(model => model.Sinaninaemwamini306a6)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Nyinginezo306a6" /> @Html.DisplayNameFor(model => model.Nyinginezo306a6)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+
+                <label asp-for="MpangoMtu306b" class="control-label"></label>
+
+
+            </div>
+            <div class="row">
+                <input asp-for="MpangoMtu306b" class="form-control" />
+                <span asp-validation-for="MpangoMtu306b" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+
+                <label asp-for="HaliMwenza307" class="control-label"></label>
+            </div>
+
+
+            <div class="row">
+
+               <input asp-for="HaliMwenza307" class="form-control" />
+                <span asp-validation-for="HaliMwenza307" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+
+                <label asp-for="KuhudumiwaTofautiVVU308a" class="control-label"></label>
+
+
+            </div>
+            <div class="row">
+                <input asp-for="KuhudumiwaTofautiVVU308a" class="form-control" />
+                <span asp-validation-for="KuhudumiwaTofautiVVU308a" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+
+                <label class="control-label text-primary">
+                    308b kama ndio,nani aliekufanyia/kutendea?
+                </label>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mwenza308b1" /> @Html.DisplayNameFor(model => model.Mwenza308b1)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mwanafamiliaa308b2" /> @Html.DisplayNameFor(model => model.Mwanafamiliaa308b2)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Wazazi308b3" /> @Html.DisplayNameFor(model => model.Wazazi308b3)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Rafiki308b1" /> @Html.DisplayNameFor(model => model.Rafiki308b1)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mfanyakazi308b5" /> @Html.DisplayNameFor(model => model.Mfanyakazi308b5)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Mhudumu308b6" /> @Html.DisplayNameFor(model => model.Mhudumu308b6)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Wengine308b7" /> @Html.DisplayNameFor(model => model.Wengine308b7)
+                        </label>
+                    </div>
+                    <div class="row" style="padding-left:50px;">
+
+                        <input asp-for="Tajawengine308b8" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="UmejiungaVVU309a" class="control-label"></label>
+
+            </div>
+            <div class="row">
+                 <input asp-for="UmejiungaVVU309a" class="form-control" />
+                <span asp-validation-for="UmejiungaVVU309a" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="NdioTaja309b" class="control-label"></label>
+
+            </div>
+            <div class="row" style="margin-top:24px;">
+                <input asp-for="NdioTaja309b" class="form-control" />
+                <span asp-validation-for="NdioTaja309b" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="MamaMwambata310a" class="control-label"></label>
+
+            </div>
+            <div class="row">
+                 <input asp-for="MamaMwambata310a" class="form-control" />
+                <span asp-validation-for="MamaMwambata310a" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+                <label class="control-label text-primary">
+                    310b Kama ndio (309a) huduma gani ulipatiwa?
+                </label>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <div class="col-md-12  text-primary" id="kutendea">
+                        <div class="row" style="padding-left:50px;">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Ushauri310b1" /> @Html.DisplayNameFor(model => model.Ushauri310b1)
+                            </label>
+                        </div>
+                        <div class="row" style="padding-left:50px;">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Elimuafya310b2" /> @Html.DisplayNameFor(model => model.Elimuafya310b2)
+                            </label>
+                        </div>
+                        <div class="row" style="padding-left:50px;">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Ufuatiliaji310b3" /> @Html.DisplayNameFor(model => model.Ufuatiliaji310b3)
+                            </label>
+                        </div>
+                        <div class="row" style="padding-left:50px;">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Nyinginezo310b4" /> @Html.DisplayNameFor(model => model.Nyinginezo310b4)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="row">
+
+                <label asp-for="Rufaa" class="control-label"></label>
+            </div>
+            <div class="row" style="margin-top:23px;">
+                <input asp-for="Rufaa" class="form-control" />
+                <span asp-validation-for="Rufaa" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="TareheHudhurioLijalo" class="control-label"></label>
+
+            </div>
+            <div class="row" style="margin-top:23px;">
+                <input asp-for="TareheHudhurioLijalo" class="form-control" />
+                <span asp-validation-for="TareheHudhurioLijalo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="Ufuatiliaji" class="control-label"></label>
+
+            </div>
+            <div class="row" style="margin-top:23px;">
+              <input asp-for="Ufuatiliaji" class="form-control" />
+                <span asp-validation-for="Ufuatiliaji" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="JinaMtoHuduma" class="control-label"></label>
+
+            </div>
+            <div class="row" style="margin-top:25px;">
+                <input asp-for="JinaMtoHuduma" class="form-control" />
+                <span asp-validation-for="JinaMtoHuduma" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-12" style="margin-top:10px">
+            <div class="row">
+                <div class="col-md-1">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+                <div class="col-md-1">
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        document.getElementById('nmshiriki').focus();
+
+
+      
+    </script>
 }

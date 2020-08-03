@@ -1,12 +1,16 @@
 {
   "dependencies": {
-    "mssql1": {
+    "mssql3": {
       "type": "mssql",
-      "connectionId": "DefaultConnection"
+      "connectionId": "PmtContextConnection"
     },
     "mssql2": {
       "type": "mssql",
       "connectionId": "PmtctContext"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "DefaultConnection"
     }
   }
 }

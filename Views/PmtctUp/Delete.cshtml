@@ -1,127 +1,265 @@
 ﻿@model Pmtct.Models.PmtctFollowUp
 
 @{
-    ViewData["Title"] = "Kufuta taarifa";
+    ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-danger">Kufuta Taarifa</h1>
+<div class="row">
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class=" col-md-4 ">
+                <a class="nav-link  btn btn-success btn-sm" asp-action="Index">Follow-up</a>
+            </div>
 
-<h3>Una uwakika unata kufuta huu Taarifa?</h3>
+        </div>
+    </div>
+</div>
+<hr />
 
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
 <div>
-    @*<h4>PmtctData</h4>*@
-    <a asp-action="Index">Rudi kwenye Taarifa</a>
-    <hr />
+    
     <dl class="row">
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TareheHudhurio)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TareheHudhurio)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HaliYako305a)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HaliYako305a)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.KamaHapana305a)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KamaHapana305a)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.KamaNdio305b)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KamaNdio305b)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MpangoMtu306b)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MpangoMtu306b)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HaliMwenza307)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HaliMwenza307)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KuhudumiwaTofautiVVU308a)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NaniKutendea308b)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NaniKutendea308b)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UmejiungaVVU309a)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NdioTaja309b)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NdioTaja309b)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MamaMwambata310a)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MamaMwambata310a)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HudumaHulipatiwa310b)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HudumaHulipatiwa310b)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rufaa)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rufaa)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TareheHudhurioLijalo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ufuatiliaji)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Ufuatiliaji)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.JinaMtoHuduma)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.JinaMtoHuduma)
-        </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-5">
             @Html.DisplayNameFor(model => model.NambaMshiriki01)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-5">
             @Html.DisplayFor(model => model.NambaMshiriki01)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.TareheHudhurio)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.TareheHudhurio)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.HaliYako305a)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.HaliYako305a)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mwenza305b1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mwenza305b1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mwanafamiliaa305b2)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mwanafamiliaa305b2)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Wazazi305b3)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Wazazi305b3)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Rafiki305b1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Rafiki305b1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mfanyakazi305b5)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mfanyakazi305b5)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Wengine305b6)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Wengine305b6)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Tajawengine305b7)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Tajawengine305b7)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Naogopakutengwa306a1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Naogopakutengwa306a1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Naogopakuachwa306a2)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Naogopakuachwa306a2)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.kunyanyapaliwa306a2)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.kunyanyapaliwa306a2)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.BadosijaaminiVVUliwa306a4)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.BadosijaaminiVVUliwa306a4)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Sinaninaemwamini306a6)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Sinaninaemwamini306a6)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Nyinginezo306a6)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Nyinginezo306a6)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.MpangoMtu306b)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.MpangoMtu306b)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.HaliMwenza307)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.HaliMwenza307)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.KuhudumiwaTofautiVVU308a)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.KuhudumiwaTofautiVVU308a)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mwenza308b1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mwenza308b1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mwanafamiliaa308b2)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mwanafamiliaa308b2)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Wazazi308b3)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Wazazi308b3)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Rafiki308b1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Rafiki308b1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mfanyakazi308b5)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mfanyakazi308b5)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Mhudumu308b6)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Mhudumu308b6)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Wengine308b7)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Wengine308b7)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Tajawengine308b8)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Tajawengine308b8)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.UmejiungaVVU309a)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.UmejiungaVVU309a)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.NdioTaja309b)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.NdioTaja309b)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.MamaMwambata310a)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.MamaMwambata310a)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Ushauri310b1)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Ushauri310b1)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Elimuafya310b2)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Elimuafya310b2)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Ufuatiliaji310b3)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Ufuatiliaji310b3)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Nyinginezo310b4)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Nyinginezo310b4)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Rufaa)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Rufaa)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.TareheHudhurioLijalo)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.TareheHudhurioLijalo)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Ufuatiliaji)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Ufuatiliaji)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.JinaMtoHuduma)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.JinaMtoHuduma)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.UserId)
         </dd>
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Futa" class="btn btn-danger" /> |
-        <a asp-action="Index">Rudi kwenye Taarifa</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

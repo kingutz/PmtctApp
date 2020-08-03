@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pmtct.Services
 {
-    public class PmtctService : IPmtctService
+    public class PmtctService 
     {
         private readonly PmtctContext _context;
 
@@ -18,14 +18,6 @@ namespace Pmtct.Services
         }
                 
 
-        public  bool VerifyName(string NambaMshiriki01, string ServiceName,int? id)
-        {
-          
-                
-             return  _context.PmtctCareCascade.
-                Any(i=>i.ServiceName == ServiceName && i.NambaMshiriki01 == NambaMshiriki01 && i.ID !=id);
-
-            
-        }
+       
     }
 }
