@@ -31,6 +31,9 @@ namespace Pmtct.Data
         {        
 
             base.OnModelCreating(builder);
+            builder.Entity<PmtctData>()
+             .HasIndex(u => u.NambaMshiriki01)
+             .IsUnique();
 
             //LogModelBuilderHelper.Build(builder.Entity<ExtendedLog>());
 

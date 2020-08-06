@@ -96,19 +96,28 @@ namespace Pmtct.Controllers
             "AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7,TajaMengine204b," +
             "UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a,LiniDawaVVU304b,CTC304c")] PmtctData pmtctData)
         {
-            
-              
-            
-           
-            if (ModelState.IsValid)
+
+
+            try
             {
-                pmtctData.CreatedDate = DateTime.Now;
-              
-                _context.Add(pmtctData);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation(LoggingEvents.InsertItem, "Mteja {Id} Created by {user}", pmtctData.ID,User.Identity.Name);
-                
-                return RedirectToAction(nameof(Create));
+
+                if (ModelState.IsValid)
+                {
+                    pmtctData.CreatedDate = DateTime.Now;
+
+                    _context.Add(pmtctData);
+                    await _context.SaveChangesAsync();
+                    _logger.LogInformation(LoggingEvents.InsertItem, "Mteja {Id} Created by {user}", pmtctData.ID, User.Identity.Name);
+
+                    return RedirectToAction(nameof(Create));
+                }
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save a record. " +
+                    "Try again, and if the problem persists " +
+                    "see your system administrator, Watch 'Namba ya Mshiriki' Must be unique.");
             }
             return View(pmtctData);
         }
@@ -186,7 +195,7 @@ namespace Pmtct.Controllers
         }
 
         // GET: Pmtct/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public async Task<IActionResult> Delete(long? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -194,13 +203,18 @@ namespace Pmtct.Controllers
                 return NotFound();
             }
 
-            var pmtctData = await _context.Pmt
+            var pmtctData = await _context.Pmt.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (pmtctData == null)
             {
                 return NotFound();
             }
-
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
             return View(pmtctData);
         }
 
@@ -210,14 +224,26 @@ namespace Pmtct.Controllers
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var pmtctData = await _context.Pmt.FindAsync(id);
-            _context.Pmt.Remove(pmtctData);
-            await _context.SaveChangesAsync();
-            //_logger.LogInformation(LoggingEvents.DeleteItem, "Item {Id} Deleted", id);
-            _logger.LogCritical(LoggingEvents.DeleteItem,"Mteja  {mteja} Deleted by user {user}", pmtctData,User.Identity.Name);
-            return RedirectToAction(nameof(Index));
-        }
+            if (pmtctData == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            try
+            {
+                _context.Pmt.Remove(pmtctData);
+                await _context.SaveChangesAsync();
+                //_logger.LogInformation(LoggingEvents.DeleteItem, "Item {Id} Deleted", id);
+                _logger.LogCritical(LoggingEvents.DeleteItem, "Mteja  {mteja} Deleted by user {user}", pmtctData, User.Identity.Name);
+                return RedirectToAction(nameof(Index));
+            }
 
-        private bool PmtctDataExists(long id)
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
+        }
+            private bool PmtctDataExists(long id)
         {
             return _context.Pmt.Any(e => e.ID == id);
         }
