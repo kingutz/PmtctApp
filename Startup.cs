@@ -40,6 +40,7 @@ namespace Pmtct
             //services.AddDbContext<PmtctContext>(options =>
             //   options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultUI().AddDefaultTokenProviders()
                    .AddEntityFrameworkStores<PmtctContext>();
@@ -82,53 +83,29 @@ namespace Pmtct
             //});
         
 
-        //services.AddDbContext<PmtctContext>(options =>
-        //        options.UseSqlServer(Configuration.GetConnectionString("PmtctContext")));
-
-        //services.AddScoped<IPmtctService, PmtctService>();
-        //    services.AddTransient<IEmailSender, EmailSender>();
+       
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             DbInitializer.Initialize(app);
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-               
-               
-            
-                //ILogger logger = loggerFactory.CreateLogger("Configure");
-                //app.Use(
-                //    async (context, next) =>
-                //    {
-                //        logger.LogInformation(1, "Handling request.");
-                //        await next.Invoke();
-                //        logger.LogInformation(2, "Finished handling request.");
-                //    });
 
-                //app.Run(async context => { await context.Response.WriteAsync("Hello World"); });
+
+
             }
             else
             {
                 app.UseHsts();
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 
             }
-        //loggerFactory.AddEntityFramework<PmtctContext>(app.ApplicationServices);
-        //loggerFactory.WithFilter(
-        //new FilterLoggerSettings
-        //    {
-        //            { "Microsoft", LogLevel.None },
-        //            { "System", LogLevel.None }
-        //    })
-        //             .AddEntityFramework<PmtctContext, ExtendedLog>(app.ApplicationServices);
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

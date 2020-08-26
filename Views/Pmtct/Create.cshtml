@@ -24,7 +24,7 @@
             <div class="col-md-4">
                 <a class="nav-link  btn btn-primary btn-sm" asp-action="Create" asp-controller="PmtctUp">Follow-up</a>
             </div>
-          
+
         </div>
     </div>
 
@@ -39,38 +39,38 @@
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        @Html.Hidden("UserId", (object)ViewBag.UserId)
-        <input type="hidden" asp-for="UserId" />
+        @*@Html.Hidden("CreatedByUser", (object)ViewBag.UserId)
+            <input type="hidden" asp-for="CreatedByUser" />*@
 
-        <div class="row text-success">
+    <div class="row text-success">
 
- 
-            
-            <div class="row">
-              
+
+
+        <div class="row">
+
             <div class="col-md-6">
 
-           </div>
+            </div>
 
-         
+
             <div class="col-md-6 text-info">
                 <div class="row">
-              <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
-                PMTCT CARE CASCADE
-            </div>
-             <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
-                Service
-            </div>
+                    <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
+                        PMTCT CARE CASCADE
+                    </div>
+                    <div class="col-md-12 " id="pcc" style="color:brown;background-color:antiquewhite;margin:10px">
+                        Service
+                    </div>
                 </div>
                 <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.InitiatedART401) 
+                            @Html.DisplayNameFor(model => model.InitiatedART401)
                         </label>
                     </div>
-                     <div class="col-md-2" >
-                    <input class="form-check-input" id="init401" asp-for="InitiatedART401" />
-                     </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input" id="init401" asp-for="InitiatedART401" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="InitiatedARTDate401" class="form-control" />
                         <span asp-validation-for="InitiatedARTDate401" class="text-danger"></span>
@@ -81,57 +81,57 @@
                 <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.DeliveryFacility402) 
+                            @Html.DisplayNameFor(model => model.DeliveryFacility402)
                         </label>
                     </div>
-                     <div class="col-md-2">
-                    <input class="form-check-input" asp-for="DeliveryFacility402" />
-                     </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input" asp-for="DeliveryFacility402" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="DeliveryFacilityDate402" class="form-control" />
                         <span asp-validation-for="DeliveryFacilityDate402" class="text-danger"></span>
 
                     </div>
                 </div>
-             <div class="row" style="margin:4px;">
+                <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.EarlyBirth403a) 
+                            @Html.DisplayNameFor(model => model.EarlyBirth403a)
                         </label>
                     </div>
-                      <div class="col-md-2">
-                    <input class="form-check-input" asp-for="EarlyBirth403a" />
-                     </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input" asp-for="EarlyBirth403a" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="EarlyBirthDate403a" class="form-control" />
                         <span asp-validation-for="EarlyBirthDate403a" class="text-danger"></span>
 
                     </div>
                 </div>
-            <div class="row" style="margin:4px;">
+                <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.InfantHIVstatus403b) 
+                            @Html.DisplayNameFor(model => model.InfantHIVstatus403b)
                         </label>
                     </div>
                     <div class="col-md-2">
-                   <input class="form-check-input" asp-for="InfantHIVstatus403b" />
-                     </div>
+                        <input class="form-check-input" asp-for="InfantHIVstatus403b" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="InfantHIVstatusDate403b" class="form-control" />
                         <span asp-validation-for="InfantHIVstatusDate403b" class="text-danger"></span>
 
                     </div>
                 </div>
-            <div class="row" style="margin:4px;">
+                <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.MotherResults403c) 
+                            @Html.DisplayNameFor(model => model.MotherResults403c)
                         </label>
                     </div>
                     <div class="col-md-2">
-                 <input class="form-check-input" asp-for="MotherResults403c" />
-                     </div>
+                        <input class="form-check-input" asp-for="MotherResults403c" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="MotherResultsDate403c" class="form-control" />
                         <span asp-validation-for="MotherResultsDate403c" class="text-danger"></span>
@@ -142,42 +142,42 @@
                 <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
-                            @Html.DisplayNameFor(model => model.InfantBreastfeeding404a) 
+                            @Html.DisplayNameFor(model => model.InfantBreastfeeding404a)
                         </label>
                     </div>
-                     <div class="col-md-2">
-               <input class="form-check-input" asp-for="InfantBreastfeeding404a" />
-                     </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input" asp-for="InfantBreastfeeding404a" />
+                    </div>
                     <div class="col-md-5">
                         <input asp-for="InfantBreastfeedingDate404a" class="form-control" />
                         <span asp-validation-for="InfantBreastfeedingDate404a" class="text-danger"></span>
 
                     </div>
 
-                   
-                   
-                       
-             
-                  <div class="row">
-                     <div class="col-md-6">
-                         <label asp-for="RemarksName" style="padding-left: 60px;padding-top:20px;" class="control-label text-info"></label>
-                         </div>
-                     <div class="col-md-6">
-                        <textarea asp-for="RemarksName"style="margin-left: 75px;" class="form-control "></textarea>
-                        <span asp-validation-for="RemarksName" class="text-danger"></span>
 
-                     </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="RemarksName" style="padding-left: 60px;padding-top:20px;" class="control-label text-info"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea asp-for="RemarksName" style="margin-left: 75px;" class="form-control "></textarea>
+                            <span asp-validation-for="RemarksName" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
-
-            </div>
-
-           
-              </div>
 
             <div class="col-md-12" style="color:brown;background-color:antiquewhite;margin:10px">
                 TAARIFA ZA KITUO NA MAHOJIANO
             </div>
-           
+
             <div class="col-md-12">
                 <div class="row">
 
@@ -405,7 +405,7 @@
                     <div class="col-md-3">
                         <label asp-for="MdaKuishiZanzibar109" id="mdakuishi" class="control-label"></label>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -462,7 +462,7 @@
                         </select>
                         <span asp-validation-for="MdaKuishiZanzibar109" class="text-danger"></span>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -471,7 +471,7 @@
                 <div class="row">
                     <div class="col-md-3">
 
-                        <label asp-for="NjeZanzibar108"  class="control-label text-primary"></label>
+                        <label asp-for="NjeZanzibar108" class="control-label text-primary"></label>
                     </div>
 
                 </div>
@@ -731,7 +731,7 @@
 
                 </div>
             </div>
-            <div class="col-md-12 collapse"  id="liniCTCIn">
+            <div class="col-md-12 collapse" id="liniCTCIn">
                 <div class="row">
                     <div class="col-md-3">
 
@@ -751,7 +751,7 @@
             </div>
 
 
-           
+
             <div class="col-md-12" style="margin-top:10px">
                 <div class="row">
                     <div class="col-md-1">
@@ -763,6 +763,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </form>
 </div>
 
@@ -860,17 +861,17 @@
         document.getElementById('nmshiriki').focus();
 
 
-        
-       
+
+
         $(document).on("change", "#mdakuishi", function () {
             if ($(this).val() == "1. Ndani ya mwaka mmoja" || $(this).val() == "2. Mwaka 1 hadi miaka mitano" || $(this).val() == "3. Zaidi ya miaka mitano") {
-               
+
                 $("#njezanzila").removeClass("collapse");
                 $("#njezanziIn").removeClass("collapse");
 
             }
             else {
-                
+
                 $("#njezanzila").addClass("collapse");
                 $("#njezanziIn").addClass("collapse");
 
@@ -880,13 +881,13 @@
         $(document).on("change", "#dawaVVU", function () {
             if ($(this).val() == "1.Ndiyo") {
 
-               $("#liniCTCLa").removeClass("collapse");
-               $("#liniCTCIn").removeClass("collapse");
+                $("#liniCTCLa").removeClass("collapse");
+                $("#liniCTCIn").removeClass("collapse");
 
             }
             else {
-                 $("#liniCTCLa").addClass("collapse");
-                 $("#liniCTCIn").addClass("collapse");
+                $("#liniCTCLa").addClass("collapse");
+                $("#liniCTCIn").addClass("collapse");
 
             }
         });

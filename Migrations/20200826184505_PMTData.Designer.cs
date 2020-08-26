@@ -10,14 +10,14 @@ using Pmtct.Data;
 namespace Pmtct.Migrations
 {
     [DbContext(typeof(PmtctContext))]
-    [Migration("20200730132001_PMTData")]
+    [Migration("20200826184505_PMTData")]
     partial class PMTData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -222,9 +222,9 @@ namespace Pmtct.Migrations
 
             modelBuilder.Entity("Pmtct.Models.PmtctData", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("AnaishiMbaliAfya204b_6")
@@ -240,8 +240,11 @@ namespace Pmtct.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("DawaVVU304a")
                         .IsRequired()
@@ -259,6 +262,9 @@ namespace Pmtct.Migrations
 
                     b.Property<DateTime?>("EarlyBirthDate403a")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Edited")
+                        .HasColumnType("bit");
 
                     b.Property<string>("HaliNdoa103")
                         .IsRequired()
@@ -350,6 +356,12 @@ namespace Pmtct.Migrations
                     b.Property<bool>("Mengine204b_7")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ModifiedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<bool>("MotherResults403c")
                         .HasColumnType("bit");
 
@@ -410,9 +422,6 @@ namespace Pmtct.Migrations
                         .IsRequired()
                         .HasColumnType("float");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Wilaya02")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -424,17 +433,29 @@ namespace Pmtct.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("NambaMshiriki01")
+                        .IsUnique();
+
                     b.ToTable("Pmt");
                 });
 
             modelBuilder.Entity("Pmtct.Models.PmtctFollowUp", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("BadosijaaminiVVUliwa306a4")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Edited")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Elimuafya310b2")
@@ -472,6 +493,12 @@ namespace Pmtct.Migrations
 
                     b.Property<bool>("Mhudumu308b6")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MpangoMtu306b")
                         .HasColumnType("nvarchar(255)")
@@ -548,10 +575,6 @@ namespace Pmtct.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Ushauri310b1")
                         .HasColumnType("bit");
 
@@ -570,8 +593,8 @@ namespace Pmtct.Migrations
                     b.Property<bool>("kunyanyapaliwa306a2")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("pmtctDataID")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("pmtctDataID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -635,7 +658,8 @@ namespace Pmtct.Migrations
                 {
                     b.HasOne("Pmtct.Models.PmtctData", "pmtctData")
                         .WithMany("followup")
-                        .HasForeignKey("pmtctDataID");
+                        .HasForeignKey("pmtctDataID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

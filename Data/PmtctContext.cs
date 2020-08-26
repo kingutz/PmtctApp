@@ -10,80 +10,85 @@ using System.ComponentModel.DataAnnotations;
 using ZNetCS.AspNetCore.Logging.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
+using Audit.EntityFramework;
+using System.Threading;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
+using Pmtct.Services;
+
 namespace Pmtct.Data
+
 {
     public class PmtctContext : IdentityDbContext<ApplicationUser>
-   
     {
-        public PmtctContext (DbContextOptions<PmtctContext> options)
+        private readonly ICurrentUserService currentUserService;
+
+        public PmtctContext(DbContextOptions<PmtctContext> options, ICurrentUserService currentUserService)
             : base(options)
         {
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
         }
 
         public DbSet<PmtctData> Pmt { get; set; }
 
-       
-        public DbSet<PmtctFollowUp> PmtctFollowUp { get; set; }
-        //public DbSet<ExtendedLog> Logs { get; set; }
 
+        public DbSet<PmtctFollowUp> PmtctFollowUp { get; set; }
+
+      
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {        
+        {
 
             base.OnModelCreating(builder);
             builder.Entity<PmtctData>()
-             .HasIndex(u => u.NambaMshiriki01)
+                .HasIndex(u => u.NambaMshiriki01)
              .IsUnique();
 
-            //LogModelBuilderHelper.Build(builder.Entity<ExtendedLog>());
+              builder.Entity<PmtctData>()
+             .HasMany(i => i.followup).WithOne(c => c.pmtctData).OnDelete(DeleteBehavior.Cascade);
 
-            //// real relation database can map table:
-            //builder.Entity<ExtendedLog>().ToTable("Log");
-            //builder.Entity<ExtendedLog>().Property(r => r.Id).ValueGeneratedOnAdd();
 
-            //builder.Entity<ExtendedLog>().HasIndex(r => r.TimeStamp).HasName("IX_Log_TimeStamp");
-            //builder.Entity<ExtendedLog>().HasIndex(r => r.EventId).HasName("IX_Log_EventId");
-            //builder.Entity<ExtendedLog>().HasIndex(r => r.Level).HasName("IX_Log_Level");
 
-            //builder.Entity<ExtendedLog>().Property(u => u.Name).HasMaxLength(255);
-            //builder.Entity<ExtendedLog>().Property(u => u.Browser).HasMaxLength(255);
-            //builder.Entity<ExtendedLog>().Property(u => u.User).HasMaxLength(255);
-            //builder.Entity<ExtendedLog>().Property(u => u.Host).HasMaxLength(255);
-            //builder.Entity<ExtendedLog>().Property(u => u.Path).HasMaxLength(255);
         }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            ProcessSave();
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        private void ProcessSave()
+        {
+            var currentTime = DateTimeOffset.UtcNow;
+            foreach (var item in ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Added && e.Entity is EntityData))
+            {
+                var entidad = item.Entity as EntityData;
+                entidad.CreatedDate = currentTime;
+                entidad.CreatedByUser = currentUserService.GetCurrentUsername();
+                entidad.ModifiedDate = currentTime;
+                entidad.ModifiedByUser = currentUserService.GetCurrentUsername();
+            }
+
+            foreach (var item in ChangeTracker.Entries()
+                .Where(predicate: e => e.State == EntityState.Modified && e.Entity is EntityData))
+            {
+                var entidad = item.Entity as EntityData;
+                entidad.ModifiedDate = currentTime;
+                entidad.Edited=true;
+                entidad.ModifiedByUser = currentUserService.GetCurrentUsername();
+                item.Property(nameof(entidad.CreatedDate)).IsModified = false;
+                item.Property(nameof(entidad.CreatedByUser)).IsModified = false;
+            }
+        }
+
     }
+        public class ApplicationUser : IdentityUser
+        {
+            [PersonalData]
+            public string Name { get; set; }
+        }
 
+       
+        
 
-    public class ApplicationUser: IdentityUser
-    {
-        [PersonalData]
-        public string Name { get; set; }
     }
-
-
-    //public class ExtendedLog : Log
-    //{
-    //    public ExtendedLog(IHttpContextAccessor accessor)
-    //    {
-    //        string browser = accessor.HttpContext.Request.Headers["User-Agent"];
-    //        if (!string.IsNullOrEmpty(browser) && (browser.Length > 255))
-    //        {
-    //            browser = browser.Substring(0, 255);
-    //        }
-
-    //        this.Browser = browser;
-    //        this.Host = accessor.HttpContext.Connection?.RemoteIpAddress?.ToString();
-    //        this.User = accessor.HttpContext.User?.Identity?.Name;
-    //        this.Path = accessor.HttpContext.Request.Path;
-    //    }
-
-    //    protected ExtendedLog()
-    //    {
-    //    }
-
-    //    public string Browser { get; set; }
-    //    public string Host { get; set; }
-    //    public string Path { get; set; }
-    //    public string User { get; set; }
-    //}
-}

@@ -7,11 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pmtct.Models { 
 
-    public partial class PmtctData
+    public partial class PmtctData:EntityData
     {
-        [Key]
+        //[Key]
         // [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Int64 ID { get; set; }
+        //public Int64 ID { get; set; }
 
        [Display(Name = "401.Initiated ART")]
         public bool InitiatedART401 { get; set; }
@@ -71,8 +71,8 @@ namespace Pmtct.Models {
         public string NambaMshiriki01 { get; set; }
 
       
-        [Display(Name = "User Id:")]
-        public string UserId { get; set; }
+        //[Display(Name = "User Id:")]
+        //public string UserId { get; set; }
 
         
         [Required(ErrorMessage = "Jaza!")]
@@ -242,10 +242,10 @@ namespace Pmtct.Models {
          [Display(Name = "304c.Tafadhali weka nambari ya utambulisho ya CTC.(CTC ID)")]
         public string CTC304c { get; set; }
 
-        [Display(Name = "Created Date:")]
-     
-        [DisplayFormat(DataFormatString = "{0:dd MMM, yyyy}", ApplyFormatInEditMode = false)]
-        public DateTime CreatedDate { get; set; }
+        
+        //[DisplayFormat(DataFormatString = "{0:dd MMM, yyyy}", ApplyFormatInEditMode = false)]
+        //public DateTime CreatedDate { get; set; }
+
 
         public ICollection<PmtctFollowUp> followup { get; set; }
         

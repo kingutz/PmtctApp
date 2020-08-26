@@ -9,23 +9,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
-    [Authorize(Roles = "admin,analyst,dataentry")]
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class PmtctUpController : Controller
     {
+        
         private readonly PmtctContext _context;
-
+        private readonly ICurrentUserService currentUserService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public PmtctUpController(PmtctContext context, RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,ICurrentUserService currentUserService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+           this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+       
+       
         }
 
         // GET: PmtctUp
@@ -39,13 +44,13 @@ namespace Pmtct.Controllers
                 return View(await _context.PmtctFollowUp.ToListAsync());
             }
             else
-                return View(await _context.PmtctFollowUp.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync());
+                return View(await _context.PmtctFollowUp.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync());
 
 
         }
 
         // GET: PmtctUp/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -63,17 +68,16 @@ namespace Pmtct.Controllers
         }
         private void PopulateDepartmentsDropDownList(object selectedNumber = null)
         {
-            var NambaMshiriki01Query = from d in _context.Pmt.Where(uid => uid.UserId == _userManager.GetUserId(User))
+            var NambaMshiriki01Query = from d in _context.Pmt.Where(uid => uid.CreatedByUser == currentUserService.GetCurrentUsername())
                                        orderby d.NambaMshiriki01
                                        select new { d.ID, d.NambaMshiriki01 };
-            ViewBag.NambaMshiriki01 = new SelectList(NambaMshiriki01Query, "ID",
-                "NambaMshiriki01", selectedNumber);
+            ViewBag.NambaMshiriki01 = new SelectList(NambaMshiriki01Query, "ID","NambaMshiriki01", selectedNumber);
         }
         // GET: PmtctUp/Create
         public IActionResult Create()
         {
             PopulateDepartmentsDropDownList();
-            ViewBag.UserId = _userManager.GetUserId(User);
+           // ViewBag.CreatedByUser = currentUserService.GetCurrentUsername();
             return View();
         }
 
@@ -82,7 +86,7 @@ namespace Pmtct.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UserId,TareheHudhurio,HaliYako305a,Mwenza305b1," +
+        public async Task<IActionResult> Create([Bind("ID,TareheHudhurio,HaliYako305a,Mwenza305b1," +
             "Mwanafamiliaa305b2,Wazazi305b3,Rafiki305b1,Mfanyakazi305b5,Wengine305b6,Tajawengine305b7," +
             "Naogopakutengwa306a1,Naogopakuachwa306a2,kunyanyapaliwa306a2,BadosijaaminiVVUliwa306a4," +
             "Sinaninaemwamini306a6,Nyinginezo306a6,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a," +
@@ -101,7 +105,7 @@ namespace Pmtct.Controllers
         }
 
         // GET: PmtctUp/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -121,7 +125,7 @@ namespace Pmtct.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ID,UserId,TareheHudhurio,HaliYako305a,Mwenza305b1," +
+        public async Task<IActionResult> Edit(int id, [Bind("ID,TareheHudhurio,HaliYako305a,Mwenza305b1," +
             "Mwanafamiliaa305b2,Wazazi305b3,Rafiki305b1,Mfanyakazi305b5,Wengine305b6,Tajawengine305b7," +
             "Naogopakutengwa306a1,Naogopakuachwa306a2,kunyanyapaliwa306a2,BadosijaaminiVVUliwa306a4," +
             "Sinaninaemwamini306a6,Nyinginezo306a6,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a," +
@@ -159,7 +163,7 @@ namespace Pmtct.Controllers
         }
 
         // GET: PmtctUp/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -179,7 +183,7 @@ namespace Pmtct.Controllers
         // POST: PmtctUp/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pmtctFollowUp = await _context.PmtctFollowUp.FindAsync(id);
             _context.PmtctFollowUp.Remove(pmtctFollowUp);
@@ -187,7 +191,7 @@ namespace Pmtct.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PmtctFollowUpExists(long id)
+        private bool PmtctFollowUpExists(int id)
         {
             return _context.PmtctFollowUp.Any(e => e.ID == id);
         }

@@ -20,8 +20,8 @@
 <hr />
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    @Html.Hidden("UserId", (object)ViewBag.UserId)
-    <input type="hidden" asp-for="UserId" />
+    @Html.Hidden("CreatedByUser", (object)ViewBag.UserId)
+    <input type="hidden" asp-for="CreatedByUser" />
     <input type="hidden" asp-for="ID" />
 
     <div class="row text-success">

@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pmtct.Models
 {
-    public class PmtctFollowUp
+    public class PmtctFollowUp:EntityData
     {   
-        [Key]
-        public Int64 ID { get; set; }
+        //[Key]
+        //public Int64 ID { get; set; }
 
-        [Required]
-        [Display(Name = "User Name:")]
-        public string UserId { get; set; }
+        //[Required]
+        //[Display(Name = "User Name:")]
+       // public string UserId { get; set; }
 
         [Required(ErrorMessage = "Jaza Tarehe!")]
         [Display(Name = "Tarehe ya Hudhurio:")]
@@ -182,9 +182,11 @@ namespace Pmtct.Models
 
         [Required(ErrorMessage ="Lazima uweke namba ya Mteja")]
         [Display(Name = "Namba ya Mteja:")]
-
         public Int64 NambaMshiriki01 { get; set; }
-        
+        [Display(Name = "Created Date:")]
+
+       
+
         public PmtctData pmtctData { get; set; }
 
 

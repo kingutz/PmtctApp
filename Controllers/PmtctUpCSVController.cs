@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
@@ -16,17 +17,20 @@ namespace Pmtct.Controllers
     [ApiController]
     [Authorize(Roles = "admin,analyst,dataentry")]
     public class PmtctUpCSVController : ControllerBase
-    {
+
+    {   private readonly ICurrentUserService currentUserService;
         private readonly PmtctContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public PmtctUpCSVController(PmtctContext context, RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, ICurrentUserService currentUserService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+             this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+       
         }
 
         [HttpGet]
@@ -47,8 +51,8 @@ namespace Pmtct.Controllers
             "Sinaninaemwamini306a6,Nyinginezo306a6,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a," +
             "Mwenza308b1,Mwanafamiliaa308b2,Wazazi308b3,Rafiki308b1,Mfanyakazi308b5,Mhudumu308b6,Wengine308b7," +
             "Tajawengine308b8,UmejiungaVVU309a,NdioTaja309b,MamaMwambata310a,Ushauri310b1,Elimuafya310b2," +
-            "Ufuatiliaji310b3,Nyinginezo310b4,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma," +
-            "UserId");
+            "Ufuatiliaji310b3,Nyinginezo310b4,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma,CreatedByUser," +
+            "CreatedDate,ModifiedByUser,ModifiedDate,Edited");
                 foreach (var item in pmtctUp)
                 {
                     builder.AppendLine($"{item.ID},{item.NambaMshiriki01},{item.TareheHudhurio}," +
@@ -63,7 +67,8 @@ namespace Pmtct.Controllers
                         $"{item.UmejiungaVVU309a},{item.NdioTaja309b},{item.MamaMwambata310a}," +
                         $"{item.Ushauri310b1},{item.Elimuafya310b2},{item.Ufuatiliaji},{item.Nyinginezo310b4}" +
                         $"{item.Rufaa},{item.TareheHudhurioLijalo},{item.Ufuatiliaji}," +
-                        $"{item.JinaMtoHuduma},{item.UserId}");
+                        $"{item.JinaMtoHuduma},{item.CreatedByUser},{item.CreatedDate},{item.ModifiedByUser},{item.ModifiedDate}," +
+                        $"{item.Edited}");
                 }
 
 
@@ -71,9 +76,10 @@ namespace Pmtct.Controllers
 
             }
 
+
             else
 
-                pmtctUp = await _context.PmtctFollowUp.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync();
+                pmtctUp = await _context.PmtctFollowUp.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync();
 
             builder.AppendLine("ID,NambaMshiriki01,TareheHudhurio,HaliYako305a,Mwenza305b1," +
             "Mwanafamiliaa305b2,Wazazi305b3,Rafiki305b1,Mfanyakazi305b5,Wengine305b6,Tajawengine305b7," +
@@ -81,8 +87,8 @@ namespace Pmtct.Controllers
             "Sinaninaemwamini306a6,Nyinginezo306a6,MpangoMtu306b,HaliMwenza307,KuhudumiwaTofautiVVU308a," +
             "Mwenza308b1,Mwanafamiliaa308b2,Wazazi308b3,Rafiki308b1,Mfanyakazi308b5,Mhudumu308b6,Wengine308b7," +
             "Tajawengine308b8,UmejiungaVVU309a,NdioTaja309b,MamaMwambata310a,Ushauri310b1,Elimuafya310b2," +
-            "Ufuatiliaji310b3,Nyinginezo310b4,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma," +
-            "UserId");
+            "Ufuatiliaji310b3,Nyinginezo310b4,Rufaa,TareheHudhurioLijalo,Ufuatiliaji,JinaMtoHuduma,CreatedByUser," +
+            "CreatedDate,ModifiedByUser,ModifiedDate,Edited");
             foreach (var item in pmtctUp)
             {
                 builder.AppendLine($"{item.ID},{item.NambaMshiriki01},{item.TareheHudhurio}," +
@@ -97,7 +103,8 @@ namespace Pmtct.Controllers
                          $"{item.UmejiungaVVU309a},{item.NdioTaja309b},{item.MamaMwambata310a}," +
                          $"{item.Ushauri310b1},{item.Elimuafya310b2},{item.Ufuatiliaji},{item.Nyinginezo310b4}" +
                          $"{item.Rufaa},{item.TareheHudhurioLijalo},{item.Ufuatiliaji}," +
-                         $"{item.JinaMtoHuduma},{item.UserId}");
+                         $"{item.JinaMtoHuduma},{item.CreatedByUser},{item.CreatedDate},{item.ModifiedByUser},{item.ModifiedDate}," +
+                         $"{item.Edited}");
             }
 
 

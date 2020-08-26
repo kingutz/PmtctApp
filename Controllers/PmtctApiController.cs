@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
 using Pmtct.Models.PmtctModelView;
+using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
@@ -25,13 +26,17 @@ namespace Pmtct.Controllers
         private readonly PmtctContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
 
         public PmtctApiController(PmtctContext context,RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,ICurrentUserService currentUserService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+
+
         }
 
         // GET: api/PmtctApi
@@ -46,9 +51,9 @@ namespace Pmtct.Controllers
                 return await _context.Pmt.ToListAsync();
             }
             else
-                return await _context.Pmt.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync();
+                return await _context.Pmt.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync();
 
-           }
+        }
 
 
 

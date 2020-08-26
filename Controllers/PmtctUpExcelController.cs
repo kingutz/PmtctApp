@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
@@ -24,13 +25,17 @@ namespace Pmtct.Controllers
         private readonly PmtctContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
 
         public PmtctUpExcelController(PmtctContext context, RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,ICurrentUserService currentUserService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+
+
         }
 
 
@@ -87,11 +92,11 @@ namespace Pmtct.Controllers
                     worksheet.Cell(currentRow, 37).Value = "TareheHudhurioLijalo";
                     worksheet.Cell(currentRow, 38).Value = "Ufuatiliaji";
                     worksheet.Cell(currentRow, 39).Value = "JinaMtoHuduma";
-                    worksheet.Cell(currentRow, 40).Value = "UserId";
-                   
-
-
-
+                    worksheet.Cell(currentRow, 40).Value = "CreatedByUser";
+                    worksheet.Cell(currentRow, 41).Value = "CreatedDate";
+                    worksheet.Cell(currentRow, 42).Value = "ModifiedByUser";
+                    worksheet.Cell(currentRow, 43).Value = "ModifiedDate";
+                    worksheet.Cell(currentRow, 44).Value = "Edited";
 
                     foreach (var item in pmtctUp)
                     {
@@ -135,7 +140,12 @@ namespace Pmtct.Controllers
                         worksheet.Cell(currentRow, 37).Value = item.TareheHudhurioLijalo;
                         worksheet.Cell(currentRow, 38).Value = item.Ufuatiliaji;
                         worksheet.Cell(currentRow, 39).Value = item.JinaMtoHuduma;
-                        worksheet.Cell(currentRow, 40).Value = item.UserId;
+                        worksheet.Cell(currentRow, 40).Value = item.CreatedByUser;
+                        worksheet.Cell(currentRow, 41).Value = item.CreatedDate;
+                        worksheet.Cell(currentRow, 42).Value = item.ModifiedByUser;
+                        worksheet.Cell(currentRow, 43).Value = item.ModifiedDate;
+                        worksheet.Cell(currentRow, 44).Value = item.Edited;
+
                     }
                     using (var stream = new MemoryStream())
                     {
@@ -149,7 +159,7 @@ namespace Pmtct.Controllers
             }
             else
             {
-                pmtctUp = await _context.PmtctFollowUp.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync();
+                pmtctUp = await _context.PmtctFollowUp.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync();
 
                 using (var workbook = new XLWorkbook())
                 {
@@ -194,9 +204,11 @@ namespace Pmtct.Controllers
                     worksheet.Cell(currentRow, 37).Value = "TareheHudhurioLijalo";
                     worksheet.Cell(currentRow, 38).Value = "Ufuatiliaji";
                     worksheet.Cell(currentRow, 39).Value = "JinaMtoHuduma";
-                    worksheet.Cell(currentRow, 40).Value = "UserId";
-
-
+                    worksheet.Cell(currentRow, 40).Value = "CreatedByUser";
+                    worksheet.Cell(currentRow, 41).Value = "CreatedDate";
+                    worksheet.Cell(currentRow, 42).Value = "ModifiedByUser";
+                    worksheet.Cell(currentRow, 43).Value = "ModifiedDate";
+                    worksheet.Cell(currentRow, 44).Value = "Edited";
                     foreach (var item in pmtctUp)
                     {
                         currentRow++;
@@ -239,7 +251,12 @@ namespace Pmtct.Controllers
                         worksheet.Cell(currentRow, 37).Value = item.TareheHudhurioLijalo;
                         worksheet.Cell(currentRow, 38).Value = item.Ufuatiliaji;
                         worksheet.Cell(currentRow, 39).Value = item.JinaMtoHuduma;
-                        worksheet.Cell(currentRow, 40).Value = item.UserId;
+                        worksheet.Cell(currentRow, 40).Value = item.CreatedByUser;
+                        worksheet.Cell(currentRow, 41).Value = item.CreatedDate;
+                        worksheet.Cell(currentRow, 42).Value = item.ModifiedByUser;
+                        worksheet.Cell(currentRow, 43).Value = item.ModifiedDate;
+                        worksheet.Cell(currentRow, 44).Value = item.Edited;
+
                     }
                     using (var stream = new MemoryStream())
                     {
@@ -254,8 +271,6 @@ namespace Pmtct.Controllers
             }
 
         }
-
-
 
 
 

@@ -34,7 +34,7 @@ namespace Pmtct.Infra
                 {
                     if (user != null && await _userManager.IsInRoleAsync(user, role.Name))
                     {
-                        names.Add(user.Name);
+                        names.Add(user.UserName);
                     }
                 }
             }

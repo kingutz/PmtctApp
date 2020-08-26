@@ -12,24 +12,28 @@ using Microsoft.Extensions.Logging.EventSource;
 using Microsoft.VisualBasic;
 using Pmtct.Data;
 using Pmtct.Models;
+using Pmtct.Services;
 
 namespace Pmtct.Controllers
 {
-    [Authorize(Roles = "admin,analyst,dataentry")]
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class PmtctController : Controller
     {
         private readonly PmtctContext _context;
         private readonly ILogger<PmtctController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
 
         public PmtctController(PmtctContext context, RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager, ILogger<PmtctController> logger)
+            UserManager<ApplicationUser> userManager, ILogger<PmtctController> logger,ICurrentUserService currentUserService)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _logger = logger;
+             this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+       
         }
 
         // GET: Pmtct
@@ -47,13 +51,13 @@ namespace Pmtct.Controllers
             else
 
                 _logger.LogInformation(LoggingEvents.GetItem, "Listing all items");
-            return View(await _context.Pmt.Where(p => p.UserId == _userManager.GetUserId(User)).ToListAsync());
+            return View(await _context.Pmt.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync());
 
         }
         }
 
         // GET: Pmtct/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(int? id)
         {
             _logger.LogInformation(LoggingEvents.GetItem, "Getting item {Id}", id);
             if (id == null)
@@ -75,7 +79,7 @@ namespace Pmtct.Controllers
         // GET: Pmtct/Create
         public IActionResult Create()
         {
-            ViewBag.UserId = _userManager.GetUserId(User);
+           // ViewBag.CreatedByUser = currentUserService.GetCurrentUsername();
             return View();
         }
 
@@ -121,9 +125,9 @@ namespace Pmtct.Controllers
             }
             return View(pmtctData);
         }
-        // public long  getId()
+        // public int  getId()
         // {
-        //     long ID=0;
+        //     int ID=0;
         //     var NambaID = from d in _context.Pmt orderby d.ID descending
         //                                select d.ID;
         //     if (NambaID==null)
@@ -136,7 +140,7 @@ namespace Pmtct.Controllers
         //     }
         // }
         // GET: Pmtct/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -158,7 +162,7 @@ namespace Pmtct.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ID,InitiatedART401,InitiatedARTDate401," +
+        public async Task<IActionResult> Edit(int id, [Bind("ID,InitiatedART401,InitiatedARTDate401," +
             "DeliveryFacility402,DeliveryFacilityDate402," +
             "EarlyBirth403a,EarlyBirthDate403a,InfantHIVstatus403b,InfantHIVstatusDate403b,MotherResults403c," +
             "MotherResultsDate403c,InfantBreastfeeding404a,InfantBreastfeedingDate404a," +
@@ -195,7 +199,7 @@ namespace Pmtct.Controllers
         }
 
         // GET: Pmtct/Delete/5
-        public async Task<IActionResult> Delete(long? id, bool? saveChangesError = false)
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -221,7 +225,7 @@ namespace Pmtct.Controllers
         // POST: Pmtct/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pmtctData = await _context.Pmt.FindAsync(id);
             if (pmtctData == null)
@@ -243,7 +247,7 @@ namespace Pmtct.Controllers
                 return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
-            private bool PmtctDataExists(long id)
+            private bool PmtctDataExists(int id)
         {
             return _context.Pmt.Any(e => e.ID == id);
         }

@@ -51,8 +51,13 @@ namespace Pmtct.Migrations
                 name: "Pmt",
                 columns: table => new
                 {
-                    ID = table.Column<long>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedByUser = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
+                    ModifiedByUser = table.Column<string>(nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(nullable: false),
+                    Edited = table.Column<bool>(nullable: false),
                     InitiatedART401 = table.Column<bool>(nullable: false),
                     InitiatedARTDate401 = table.Column<DateTime>(nullable: true),
                     DeliveryFacility402 = table.Column<bool>(nullable: false),
@@ -67,7 +72,6 @@ namespace Pmtct.Migrations
                     InfantBreastfeedingDate404a = table.Column<DateTime>(nullable: true),
                     RemarksName = table.Column<string>(maxLength: 255, nullable: true),
                     NambaMshiriki01 = table.Column<string>(maxLength: 255, nullable: false),
-                    UserId = table.Column<string>(nullable: true),
                     Wilaya02 = table.Column<string>(nullable: false),
                     TareheMahojiano03 = table.Column<DateTime>(nullable: false),
                     Kituo04 = table.Column<string>(maxLength: 255, nullable: false),
@@ -101,8 +105,7 @@ namespace Pmtct.Migrations
                     MdaVVU303 = table.Column<string>(maxLength: 255, nullable: false),
                     DawaVVU304a = table.Column<string>(maxLength: 255, nullable: false),
                     LiniDawaVVU304b = table.Column<string>(maxLength: 255, nullable: true),
-                    CTC304c = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false)
+                    CTC304c = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -219,9 +222,13 @@ namespace Pmtct.Migrations
                 name: "PmtctFollowUp",
                 columns: table => new
                 {
-                    ID = table.Column<long>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
+                    CreatedByUser = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
+                    ModifiedByUser = table.Column<string>(nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(nullable: false),
+                    Edited = table.Column<bool>(nullable: false),
                     TareheHudhurio = table.Column<DateTime>(nullable: false),
                     HaliYako305a = table.Column<string>(maxLength: 255, nullable: false),
                     Mwenza305b1 = table.Column<bool>(nullable: false),
@@ -260,7 +267,7 @@ namespace Pmtct.Migrations
                     Ufuatiliaji = table.Column<string>(maxLength: 255, nullable: false),
                     JinaMtoHuduma = table.Column<string>(maxLength: 255, nullable: true),
                     NambaMshiriki01 = table.Column<long>(nullable: false),
-                    pmtctDataID = table.Column<long>(nullable: true)
+                    pmtctDataID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,7 +277,7 @@ namespace Pmtct.Migrations
                         column: x => x.pmtctDataID,
                         principalTable: "Pmt",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -311,6 +318,12 @@ namespace Pmtct.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pmt_NambaMshiriki01",
+                table: "Pmt",
+                column: "NambaMshiriki01",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PmtctFollowUp_pmtctDataID",
