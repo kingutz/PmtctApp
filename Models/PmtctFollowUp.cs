@@ -160,7 +160,7 @@ namespace Pmtct.Models
         [Display(Name = "310b 4.Nyinginezo")]
         public bool Nyinginezo310b4 { get; set; }
 
-        [Display(Name = "306b.Rufaa kwenda")]
+        [Display(Name = "311.Rufaa kwenda")]
         [StringLength(255)]
         public string Rufaa { get; set; }
 

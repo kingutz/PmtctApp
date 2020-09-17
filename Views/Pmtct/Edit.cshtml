@@ -93,11 +93,16 @@
                         </label>
                     </div>
                     <div class="col-md-1">
-                   <input class="form-check-input" asp-for="InfantHIVstatus403b" />
-                     </div>
+                        @*<input class="form-check-input" asp-for="InfantHIVstatus403b" />*@
+                        
+                    </div>
                     <div class="col-md-3">
-                        <input asp-for="InfantHIVstatusDate403b" class="form-control" />
-                        <span asp-validation-for="InfantHIVstatusDate403b" class="text-danger"></span>
+                        <select asp-for="InfantHIVstatus403b" id="haliyako" class="form-control">
+                            <option value=""></option>
+                            <option>1.Positive</option>
+                            <option>0.Negative</option>
+                        </select>
+                        <span asp-validation-for="InfantHIVstatus403b" class="text-danger"></span>
 
                     </div>
                 </div>

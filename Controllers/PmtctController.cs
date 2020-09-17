@@ -90,7 +90,7 @@ namespace Pmtct.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,InitiatedART401,InitiatedARTDate401," +
             "DeliveryFacility402,DeliveryFacilityDate402," +
-            "EarlyBirth403a,EarlyBirthDate403a,InfantHIVstatus403b,InfantHIVstatusDate403b,MotherResults403c," +
+            "EarlyBirth403a,EarlyBirthDate403a,InfantHIVstatus403b,MotherResults403c," +
             "MotherResultsDate403c,InfantBreastfeeding404a,InfantBreastfeedingDate404a," +
             "RemarksName,NambaMshiriki01,UserId,Wilaya02,TareheMahojiano03," +
             "Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101," +
@@ -164,7 +164,7 @@ namespace Pmtct.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,InitiatedART401,InitiatedARTDate401," +
             "DeliveryFacility402,DeliveryFacilityDate402," +
-            "EarlyBirth403a,EarlyBirthDate403a,InfantHIVstatus403b,InfantHIVstatusDate403b,MotherResults403c," +
+            "EarlyBirth403a,EarlyBirthDate403a,InfantHIVstatus403b,MotherResults403c," +
             "MotherResultsDate403c,InfantBreastfeeding404a,InfantBreastfeedingDate404a," +
             "RemarksName,NambaMshiriki01,UserId,Wilaya02,TareheMahojiano03,Kituo04,JinaAnayehoji05,Ngazikituo06,MdaKuishiZanzibar109,KiwangoElimu102,Umri101,WilayaUnayoishi107,IdadiMimba106,HaliNdoa103,KipatoMwezi104,Kazi105,NjeZanzibar108,KilomitaKituo201,KilomitaUjazo202,HudumaUjauzito203,UgumuKliniki204a,HudumaHapa205,BasiMbaliAfya204b_1,UgumuUsafiriUmma204b_2,KukosaNauli204b_3,MsafaraMrefu204b_4,AnaishiMbaliBasi204b_5,AnaishiMbaliAfya204b_6,Mengine204b_7,TajaMengine204b,UmepataHapaHuduma206,UmriMimba301,MwakaVVU302,MdaVVU303,DawaVVU304a,LiniDawaVVU304b,CTC304c")] PmtctData pmtctData)
         {

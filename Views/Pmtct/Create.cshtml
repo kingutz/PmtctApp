@@ -110,19 +110,30 @@
                 </div>
                 <div class="row" style="margin:4px;">
                     <div class="col-md-5">
-                        <label class="form-check-label">
+                        <label class="form-check-label" style="color:red;">
                             @Html.DisplayNameFor(model => model.InfantHIVstatus403b)
                         </label>
                     </div>
                     <div class="col-md-2">
-                        <input class="form-check-input" asp-for="InfantHIVstatus403b" />
+                        @*<select asp-for="InfantHIVstatus403b" id="haliyako" class="form-control">
+                            <option value=""></option>
+                            <option>1.Positive</option>
+                            <option>0.Negative</option>
+                        </select>*@
+                        @*<input class="form-check-input " style="color:red;" id="nstatus" asp-for="InfantHIVstatus403b" />*@
                     </div>
                     <div class="col-md-5">
-                        <input asp-for="InfantHIVstatusDate403b" class="form-control" />
-                        <span asp-validation-for="InfantHIVstatusDate403b" class="text-danger"></span>
+                        @*<input asp-for="InfantHIVstatusDate403b" class="form-control" />*@
+                        <select asp-for="InfantHIVstatus403b" id="haliyako" class="form-control">
+                            <option value=""></option>
+                            <option>1.Positive</option>
+                            <option>0.Negative</option>
+                        </select>
+                        <span asp-validation-for="InfantHIVstatus403b" class="text-danger"></span>
 
                     </div>
                 </div>
+               
                 <div class="row" style="margin:4px;">
                     <div class="col-md-5">
                         <label class="form-check-label">
@@ -250,7 +261,21 @@
                 <div class="row">
 
                     <div class="col-md-3">
+                  
+                        <select asp-for="Ngazikituo06" class="form-control">
+                            <option value=""></option>
+                            <option>1.Referral Hospital</option>
+                            <option>2.Regional Hospital</option>
+                            <option>3.District Hospital</option>
+                            <option>4.PHCU+</option>
+                            <option>5.PHCU</option>
+                            <option>6.Faith Based</option>
 
+                        </select>
+                        <span asp-validation-for="Ngazikituo06" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
                         <select asp-for="Kituo04" class="form-control">
                             <option value=""></option>
                             <option>Fuoni PHCU+</option>
@@ -308,22 +333,13 @@
                             <option>Bogoa PHCU</option>
                             <option>Nungwi PHCU+</option>
                             <option>Kisauni PHCU</option>
+                            <option>Kizimbani</option>
+                            <option>Cheju</option>
+                            <option>Marie Store</option>
+                            <option>Selem</option>
 
                         </select>
                         <span asp-validation-for="Kituo04" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-3">
-                        <select asp-for="Ngazikituo06" class="form-control">
-                            <option value=""></option>
-                            <option>1.Referral Hospital</option>
-                            <option>2.Regional Hospital</option>
-                            <option>3.District Hospital</option>
-                            <option>4.PHCU+</option>
-                            <option>5.PHCU</option>
-
-                        </select>
-                        <span asp-validation-for="Ngazikituo06" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -858,7 +874,7 @@
 
         });
 
-        document.getElementById('nmshiriki').focus();
+        document.getElementById('init401').focus();
 
 
 
@@ -891,6 +907,20 @@
 
             }
         });
+
+        //$(document).ready(function () {
+        //    $('#nstatus').click(function () {
+        //        if ($(this).prop("checked") == true) {
+        //            $("#nstatus").addClass("selected");
+                    
+        //        }
+        //        else if ($(this).prop("checked") == false) {
+
+        //            $("#nstatus").removeClass("selected");
+                    
+        //        }
+        //    });
+        //});
     </script>
 
 }

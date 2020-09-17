@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pmtct.Data;
 
 namespace Pmtct.Migrations
 {
     [DbContext(typeof(PmtctContext))]
-    partial class PmtctContextModelSnapshot : ModelSnapshot
+    [Migration("20200915160421_DamianHIVstatus")]
+    partial class DamianHIVstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,6 +294,9 @@ namespace Pmtct.Migrations
 
                     b.Property<string>("InfantHIVstatus403b")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("InfantHIVstatusDate403b")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("InitiatedART401")
                         .HasColumnType("bit");

@@ -38,12 +38,12 @@ namespace Pmtct.Models {
         public DateTime? EarlyBirthDate403a { get; set; }
 
         [Display(Name = "403b.Infant HIV status")]
-        public bool InfantHIVstatus403b { get; set; }
+        public string InfantHIVstatus403b { get; set; }
 
-        [Display(Name = "Date:")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime? InfantHIVstatusDate403b { get; set; }
+        //[Display(Name = "Date:")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //public DateTime? InfantHIVstatusDate403b { get; set; }
 
         [Display(Name = "403c.Mother/guardian received results")]
         public bool MotherResults403c { get; set; }
